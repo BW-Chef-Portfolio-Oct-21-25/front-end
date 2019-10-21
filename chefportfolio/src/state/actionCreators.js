@@ -1,6 +1,8 @@
+import * as types from './actionTypes';
+
 export function newPost(post) {
-  return { type: ADD_POST, payload: post };
+  return { type: types.ADD_POST, payload: post };
 }
 export function getPosts(posts) {
-    return { type: GET_POSTS, payload: posts };
+    return { type: types.GET_POSTS, payload: posts };
   }
