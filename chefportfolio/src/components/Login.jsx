@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import axios from 'axios'
 
 
-export function Login (){
+export function Login (props){
 
     const emailRef = useRef();
     const usernameRef = useRef();
@@ -17,7 +17,7 @@ export function Login (){
 
         .then(res => {
             localStorage.setItem('token', res.data.token)
-            //props.history.push('/home');
+            props.history.push('/home');
         })
 
         .catch(error => {
@@ -32,15 +32,15 @@ export function Login (){
             <form>
                 <label>
                         Email
-                    <input type = "email" name = "email" ref ={emailRef}/>
+                    <input type = "email" name = "email" ref ={emailRef} required/>
                 </label>
                 <label>
                         username
-                    <input type = "text" name = "Username" ref ={usernameRef}/>
+                    <input type = "text" name = "Username" ref ={usernameRef} required/>
                 </label>
                 <label>
                         password
-                    <input type = "password" name = "password" ref ={passwordRef}/>
+                    <input type = "password" name = "password" ref ={passwordRef} required/>
                 </label>
                 <button onClick= {onSubmit}>Submit</button>
             </form>
