@@ -1,3 +1,1 @@
-export function newFeature(feature) {
-  return { type: ADD_FEATURE, payload: feature };
-}
+export const ADD_POST = 'ADD_POST';

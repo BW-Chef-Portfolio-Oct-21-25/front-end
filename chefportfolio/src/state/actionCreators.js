@@ -1,3 +1,3 @@
-export function addFeature() {
-  return { type: types.ADD_FEATURE };
+export function newPost(post) {
+  return { type: ADD_POST, payload: post };
 }
