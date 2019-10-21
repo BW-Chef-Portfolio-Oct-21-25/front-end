@@ -1,5 +1,6 @@
 import * as types from './actionTypes'
 import axios from 'axios'
+import withAuth from '../axios/index'
 
 export function newPost(post) {
   return { type: types.ADD_POST, payload: post };
@@ -39,3 +40,22 @@ export const addUser = user => dispatch =>{
 
 //log in 
 
+
+export const login = (email, username, password) => dispatch => {
+  dispatch({type: types.LOGIN_START});
+  return withAuth().post('', {
+    email: email,
+    username: username,
+    password: password
+  })
+  .then(res => {
+    dispatch({type: types.LOGIN_SUCCESS, payload: res.data})
+    return true
+  })
+  .catch(response => {
+    dispatch({
+      type: types.LOGIN_FAILED,
+      payload:response.data
+    })
+  })
+}

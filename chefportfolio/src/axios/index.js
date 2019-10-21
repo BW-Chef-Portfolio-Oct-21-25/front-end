@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosWithAuth = () => {
+const withAuth = () => {
   const token = localStorage.getItem("token");
 
   return axios.create({
@@ -10,4 +10,4 @@ const axiosWithAuth = () => {
     baseURL: "https://chefs-portfolio.herokuapp.com/"
   });
 };
-export default axiosWithAuth;
+export default withAuth;
