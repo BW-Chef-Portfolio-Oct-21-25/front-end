@@ -1,49 +1,38 @@
-import React, { useRef } from 'react';
+import React from 'react';
+import Axios from 'axios';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { connect } from 'react-redux';
+import { addUser } from "../state/actionCreators";
 import axios from 'axios'
+
+const initialLogIn = {
+    email: " ",
+    username: " ",
+    password: " "
+}
 
 
 export function Login (props){
+    
+    const {addUser, validationSchema} = props
 
-    const emailRef = useRef();
-    const usernameRef = useRef();
-    const passwordRef = useRef();
+    const onSubmit = (values) => {
 
-    const onSubmit = () => {
-        axios.post('https://chefs-portfolio.herokuapp.com/api/users/login', {
-            email: emailRef.current.value,
-            username: usernameRef.current.value,
-            password: passwordRef.current.value
+        Axios.post('https://chefs-portfolio.herokuapp.com/api/users/login ', {
+            email: values.email,
+            username: values.username,
+            password: values.password
         })
-
-        .then(res => {
-            localStorage.setItem('token', res.data.token)
-            props.history.push('/home');
+        .then( response => {
+            localStorage.setItem('token', response.data.token);
+            console.log(response.data);
+            props.history.push('/home')
         })
-
-        .catch(error => {
-            alert(error.response.data.message)
-        })
+        .catch(error => console.log(error))
     }
 
 
     return(
-
-        <div>
-            <form>
-                <label>
-                        Email
-                    <input type = "email" name = "email" ref ={emailRef} required/>
-                </label>
-                <label>
-                        username
-                    <input type = "text" name = "Username" ref ={usernameRef} required/>
-                </label>
-                <label>
-                        password
-                    <input type = "password" name = "password" ref ={passwordRef} required/>
-                </label>
-                <button onClick= {onSubmit}>Submit</button>
-            </form>
-         </div>
+        <div></div>
     )
 }
