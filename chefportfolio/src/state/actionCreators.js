@@ -11,7 +11,7 @@ export function getPosts(posts) {
 
 export const addUser = user => dispatch =>{
   dispatch({
-    type: SIGNUP_NEW
+    type: types.SIGNUP_NEW
   });
   axios.post('', {
     email: user.email,
@@ -21,7 +21,7 @@ export const addUser = user => dispatch =>{
   .then(res => {
     console.log(res.data);
     dispatch({
-      type: SIGNUP_SUCCESS,
+      type: types.SIGNUP_SUCCESS,
       payload: res.data
     });
     return true;
@@ -29,7 +29,7 @@ export const addUser = user => dispatch =>{
   .catch(error =>{
     console.log(error);
     dispatch({
-      type: SIGNUP_FAILED, 
+      type: types.SIGNUP_FAILED, 
       payload: error.response
     });
   });
