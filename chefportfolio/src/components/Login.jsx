@@ -33,6 +33,34 @@ export function Login (props){
 
 
     return(
-        <div></div>
+        <Formik
+        validationSchema = {validationSchema}
+        initialValues = {initialLogIn}
+        onSubmit = {onSubmit}
+        render = {props => {
+            return(
+                <Form>
+                    <h1>Sign Up </h1>
+                    <label>
+                        Email
+                        <Field type = "email" name = "email"/>
+                        <ErrorMessage name = "email" component = "div"/>
+                    </label>
+                    <label>
+                        Username
+                        <Field type = "text" name = "username"/>
+                        <ErrorMessage name = "username" component = "div"/>
+                    </label>
+                    <label>
+                        Password
+                        <Field type = "password" name = "password"/>
+                        <ErrorMessage name = "password" component = "div"/>
+                    </label>
+                    <button type = 'submit'>Log In</button>
+                </Form>
+            )
+        }}
+        
+        />
     )
 }
