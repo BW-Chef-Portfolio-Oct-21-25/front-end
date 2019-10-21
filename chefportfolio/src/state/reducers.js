@@ -4,8 +4,9 @@ const initialState = {
     image: '',
     title: '',
     meal_type: '',
+    description: '',
     ingredients: '',
-    instructions: '' 
+    directions: '' 
 }
 
 export function postReducer(state = initialState, action){
