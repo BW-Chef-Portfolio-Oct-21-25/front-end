@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Route } from "react-router-dom";
-import { Home } from "./Home";
+import Home from "./Home";
 import { CreatePost } from './CreatePost';
 import { Login } from './Login';
 import { SignUp } from './SignUp';

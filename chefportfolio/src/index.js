@@ -5,19 +5,30 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import * as reducers from './state/reducers';
-import { combineReducers, createStore } from "redux";
+// import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 
 const monsterReducer = combineReducers({
-    post: reducers.postReducer,
+    posts: reducers.postReducer,
   });
   
   const store = createStore(
     monsterReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    {},
+    compose(
+      applyMiddleware(thunk),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
   );
   
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>, 
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
