@@ -1,69 +1,57 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import {Formik, Form, Field, ErrorMessage} from 'formik'
-import { addUser } from '../state/actionCreators'
-import axios from 'axios';
+import React, { useRef } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
+import * as actionCreators from '../state/actionCreators';
 
+export function SignUp(props) {
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+  const emailRef = useRef();
+  
 
-const initialUser = {
-    email: " ",
-    username: " ",
-    password: " "
+  function submit(e) {
+    e.preventDefault();
+    axios
+      .post("https://bwchefportfolio.herokuapp.com/api/users/register", {
+        username: usernameRef.current.value,
+        password: passwordRef.current.value,
+        email: emailRef.current.value,
+      })
+      .then(response => {
+       console.log(response)
+       props.history.push('/success')
+      })
+      .catch(error => {
+          console.log(error)
+      });
+  }
+
+  return (
+      <div>
+      <h1>Sign Up </h1>
+      <form>
+      <label>
+          Email
+        <input name="email" type="email" ref={emailRef} />
+      </label>
+    
+      <label>
+          Username
+        <input name="username" type="text" ref={usernameRef} />
+      </label>
+
+      <label>
+          Password
+        <input name="password" type="Password" ref={passwordRef} />
+      </label>
+      
+      <button onClick={submit}>Submit</button>
+    </form>
+    </div>
+  );
 }
 
-export function SignUp (props){
-    const {addUser, validationSchema} = props;
-
-   const handleSubmit = (values) =>{
-       axios.post('https://bwchefportfolio.herokuapp.com/api/users/register', {
-           email: values.email,
-           username: values.username,
-           password: values.password
-       })
-       .then(response => {
-           props.history.push('/success')
-       })
-       .catch(error => console.log(error))
-   }
-
-   return(
-       <Formik
-       validationSchema = {validationSchema}
-       initialValues = {initialUser}
-       onSubmit = {handleSubmit}
-       render = {props => {
-           return(
-               <Form>
-                   <h1>SIGN UP</h1>
-                   <label>
-                       Email
-                        <Field name = "email" type = "email"/>
-                        <ErrorMessage name = "email" component = "div"/>
-                   </label>
-                   <label>
-                       Username
-                        <Field name = "username" type = "text"/>
-                        <ErrorMessage name = "username" component = "div"/>
-                   </label>
-                   <label>
-                       Password
-                        <Field name = "password" type = "password"/>
-                        <ErrorMessage name = "password" component = "div"/>
-                   </label>
-                   <button type = "submit" >Sign Up</button>
-               </Form>
-           )
-       }}
-       />
-   )
-}
-
-
-const mapStateToProps = state => ({
-    error: state.error,
-    addUser: state.addUser,
-    fetchingData: state.fetchingData
-});
-
-export default connect(mapStateToProps,
-    { addUser })(SignUp)
+export default connect(
+  state => state,
+  actionCreators
+)(SignUp);

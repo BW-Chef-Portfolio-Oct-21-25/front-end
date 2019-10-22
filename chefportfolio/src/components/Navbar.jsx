@@ -3,7 +3,7 @@ import { Link, Route } from "react-router-dom";
 import { Home } from "./Home";
 import { CreatePost } from './CreatePost';
 import { Login } from './Login';
-import { SignUp } from './SignUp';
+import { SignUp } from './SignUp'
 import Success from './sucess';
 import { ChefPortfolio } from './ChefPortfolio';
 

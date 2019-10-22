@@ -1,66 +1,123 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React, { useRef } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
+import * as actionCreators from '../state/actionCreators';
 
+export function Login(props) {
+  const username = useRef();
+  const password = useRef();
+  const email = useRef();
+  
 
-const initialLogIn = {
-    email: " ",
-    username: " ",
-    password: " "
-    //include contact and location
+  function login(e) {
+    e.preventDefault();
+    axios
+      .post("https://bwchefportfolio.herokuapp.com/api/users/login", {
+        username: username.current.value,
+        password: password.current.value,
+        email: email.current.value,
+      })
+      .then(res => {
+       console.log(res)
+       alert('success')
+      })
+      .catch(err => {
+          console.log(err)
+      });
+  }
+
+  return (
+      <form>
+     Login
+      <input name="username" placeholder="Username" ref={username} />
+      <input name="password" placeholder="Password" ref={password} />
+      <input name="email" placeholder="Email" ref={email} />
+      <button onClick={login}>Submit</button>
+    </form>
+  );
 }
 
+export default connect(
+  state => state,
+  actionCreators
+)(Login);
 
-export function Login(props){
-    const [user, setUser]= useState(initialLogIn)
 
-    const onSubmit = e => {
-        e.preventDefault();
-        const options = {
-          method: "POST",
-          url: "https://bwchefportfolio.herokuapp.com/api/users/login",
-          data: user
-        };
-        axios(options)
-          .then(res => {
-            console.log(res.data);
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react'
+// import axios from 'axios'
+
+
+// const initialLogIn = {
+//     email: " ",
+//     username: " ",
+//     password: " "
+//     //include contact and location
+// }
+
+
+// export function Login(props){
+//     const [user, setUser]= useState(initialLogIn)
+
+//     const onSubmit = e => {
+//         e.preventDefault();
+//         const options = {
+//           method: "POST",
+//           url: "https://bwchefportfolio.herokuapp.com/api/users/login",
+//           data: user
+//         };
+//         axios(options)
+//           .then(res => {
+//             console.log(res.data);
     
-            window.localStorage.setItem("token", res.data.token);
-            props.history.push("/portfolio");
-          })
-          .catch(err => {
-            console.log(err);
-            alert("An error occurred!");
-          });
-    };
+//             window.localStorage.setItem("token", res.data.token);
+//             props.history.push("/portfolio");
+//           })
+//           .catch(err => {
+//             console.log(err);
+//             alert("An error occurred!");
+//           });
+//     };
 
-    const onInput = e =>{
-        setUser({
-            ...user,
-            ...{[e.target.name]: e.target.value}
-        })
-    }
+//     const onInput = e =>{
+//         setUser({
+//             ...user,
+//             ...{[e.target.name]: e.target.value}
+//         })
+//     }
 
-    return (
-        <div>
-            <h1>Log In</h1>
-            <form>
-                <label>
-                    Email
-                    <input name = "email" type = "email" value = {user.email} onChange ={onInput}/>
-                </label>
-                <label>
-                    Username
-                    <input name = "username" type = "text" value = {user.username} onChange ={onInput}/>
-                </label>
-                <label>
-                    Password
-                    <input name = "password" type = "password" value = {user.password} onChange ={onInput}/>
-                </label>
-            </form>
-            <button onClick = {onSubmit}>Login</button>
-        </div>
-    )
-}
+//     return (
+//         <div>
+//             <h1>Log In</h1>
+//             <form>
+//                 <label>
+//                     Email
+//                     <input name = "email" type = "email" value = {user.email} onChange ={onInput}/>
+//                 </label>
+//                 <label>
+//                     Username
+//                     <input name = "username" type = "text" value = {user.username} onChange ={onInput}/>
+//                 </label>
+//                 <label>
+//                     Password
+//                     <input name = "password" type = "password" value = {user.password} onChange ={onInput}/>
+//                 </label>
+//             </form>
+//             <button onClick = {onSubmit}>Login</button>
+//         </div>
+//     )
+// }
 
 
 
