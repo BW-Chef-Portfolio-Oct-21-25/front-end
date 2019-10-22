@@ -9,6 +9,7 @@ import { combineReducers, createStore } from "redux";
 
 const monsterReducer = combineReducers({
     post: reducers.postReducer,
+    posts: reducers.postReducer
   });
   
   const store = createStore(

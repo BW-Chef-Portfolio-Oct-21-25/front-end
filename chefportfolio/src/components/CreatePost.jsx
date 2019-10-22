@@ -1,13 +1,12 @@
 import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
-import axios from "axios";
+import axiosWithAuth from '../axiosWithAuth';
 import * as actionCreators from "../state/actionCreators";
 import styled from "styled-components";
 
 const StyledCreatePost = styled.div`
   display: flex;
   width: 100vw;
-  height: 100vh;
   justify-content: center;
   align-items: center;
   form {
@@ -78,23 +77,13 @@ export function CreatePost(props) {
       });
   }
 
-  function axiosWithAuth() {
-    // const token = localStorage.getItem("token");
-    return axios.create({
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoiTWVnYW4yMiIsImlhdCI6MTU3MTcyOTIxMywiZXhwIjoxNTcyMzM0MDEzfQ.wkHy9ZZPa4veeHah1fS95jyek4qYxgXwc2J2afBe7MY"
-      }
-    });
-  }
-
   return (
     <StyledCreatePost>
       <form>
         <h1>Create Post</h1>
         <input name="title" placeholder="Title" ref={title} />
         <input name="chef" placeholder="Chef" ref={chef} />
+        {/* <input type='file' ref={imgURL}/> */}
         <input name="imgURL" placeholder="Image URL" ref={imgURL} />
         <input name="description" placeholder="Description" ref={description} />
         <select ref={mealType}>
