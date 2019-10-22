@@ -9,22 +9,15 @@ export const newPost = (post) => {
     payload: post 
   };
 }
-// export function getPosts(posts) {
-//   return { 
-//     type: types.GET_POSTS, 
-//     payload: posts 
-//   };
-// }
 
 export const getPosts = () => dispatch => {
   Axios
     .get('/post')
     .then(res => {
-      console.log(res);
-      const posts = res.data;
+      // console.log(res);
       dispatch({
         type: types.GET_POSTS_SUCCESS,
-        payload: posts
+        payload: res.data.posts
       })
     })
     .catch(err =>
@@ -34,3 +27,23 @@ export const getPosts = () => dispatch => {
       })
     )
 } 
+
+export const getSinglePost = (props) => dispatch => {
+  const id = props.match.params.id;
+  
+  Axios
+    .get(`/post${id}`)
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SINGLE_POST,
+        payload: res.data.posts
+      })
+    })
+    .catch(err => 
+      dispatch({
+        type: types.GET_SINGLE_POST_FAILURE,
+        payload: err.message
+      })
+    )
+}

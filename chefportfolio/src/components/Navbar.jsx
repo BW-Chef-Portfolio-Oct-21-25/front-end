@@ -8,11 +8,16 @@ import { SignUp } from './SignUp';
 export default function Navbar(props) {
   return (
     <div>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/createpost">Create Post</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
+      <nav className="navbar">
+        <div className="left-nav">
+          <a className="red">Chef<span className="green">Diaries</span></a>
+        </div>
+        <div className="right-nav">
+          <Link to="/">Home</Link>
+          <Link to="/createpost">Create Post</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">Sign Up</Link>
+        </div>
       </nav>
       <main>
         <Route exact path="/" component={Home} />

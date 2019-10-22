@@ -10,7 +10,7 @@ const initialState = {
         directions: '' 
     },
     posts: [],
-    isFetching: true,
+    isFetching: false,
     error: ""
 };
 
@@ -30,7 +30,7 @@ export function postReducer(state = initialState, action){
                 ...state,
                 posts: action.payload,
                 isFetching: false,
-                error: ''
+                error: ""
             }
         case types.GET_POSTS_FAILURE:
             return {

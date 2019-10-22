@@ -1,32 +1,28 @@
 import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as actions from '../state/actionCreators';
 import SinglePost from './Post';
 
-export function Home(props) {
-    // const { posts } = useSelector( state => state.posts);
-    const { posts, getPosts, isFetching } = props;
-    // const dispatch = useDispatch();
-
+// export function Home({posts, getPosts, isFetching }) {
+    export function Home(props) {
+    const { getPosts, isFetching } = props;
+    const { posts } = props;
     useEffect(() => {
         getPosts();
-    }, [])
+    }, []);
 
     // if(isFetching && !posts.length ) {
     //     // debugger
     //     return <div>Loading...</div>
     // }
-
-    console.log(posts);
-// console.log(props)
     return (
-        <div>
-         {console.log(posts)}
-
-             <ul>
+        <div className="post-main-container">
+             <ul className="posts-list-container">
                 {
                     posts.map((post) => (
-                        <SinglePost 
+                        <Link to={`https://bwchefportfolio.herokuapp.com/api/users/post/${post.id}`}>
+                            <SinglePost 
                             key={post.id}
                             imgURL={post.imgURL}
                             title={post.title}
@@ -34,6 +30,7 @@ export function Home(props) {
                             serving={post.serving}
                             cook_time={post.cook_time}                        
                         />
+                        </Link>
                     ))
                 }
             </ul>
@@ -43,6 +40,7 @@ export function Home(props) {
 const mapStateToProps = (state) => {
     return {
         posts: state.posts.posts,
+        // state,
     }
 }
 
