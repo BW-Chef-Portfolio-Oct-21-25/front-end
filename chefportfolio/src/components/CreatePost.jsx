@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import * as actionCreators from '../state/actionCreators';
 
-export function CreatePost() {
+export function CreatePost(props) {
   const title = useRef();
   const mealType = useRef();
   const ingredient = useRef();
@@ -13,7 +13,7 @@ export function CreatePost() {
   function createPost(e) {
     e.preventDefault();
     axiosWithAuth()
-      .post("http://localhost:5000/api/users/post", {
+      .post("https://bwchefportfolio.herokuapp.com/api/users/post", {
         title: title.current.value,
         meal_type: mealType.current.value,
         ingredient: ingredient.current.value,
@@ -24,6 +24,9 @@ export function CreatePost() {
       })
       .then(res => {
        actionCreators.newPost(res.data.post)
+       console.log(res.data.post)
+       alert('success')
+       props.history.push('/');
       })
       .catch(err => {
           debugger
@@ -36,7 +39,7 @@ export function CreatePost() {
     return axios.create({
       headers: {
         "Content-Type": "application/json",
-        Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJuYW1lIjoiTWVnYW4iLCJpYXQiOjE1NzE2ODUxNjUsImV4cCI6MTU3MjI4OTk2NX0.jXb1fpCFda7Zy2mJa6hmqxD2YpB0wh-ePF1Kn6t9USc"
+        Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoiTWVnYW4yMiIsImlhdCI6MTU3MTcyOTIxMywiZXhwIjoxNTcyMzM0MDEzfQ.wkHy9ZZPa4veeHah1fS95jyek4qYxgXwc2J2afBe7MY"
       }
     });
   }
@@ -45,7 +48,12 @@ export function CreatePost() {
     <form>
       Create Post
       <input name="title" placeholder="Title" ref={title} />
-      <input name="meal_type" placeholder="Meal Type" ref={mealType} />
+      <select ref={mealType}>
+          <option>Breakfast</option>
+          <option>Lunch</option>
+          <option>Dinner</option>
+          <option>Dessert</option>
+      </select>
       <input name="ingredient" placeholder="Ingredient" ref={ingredient} />
       <input
         name="directions"
