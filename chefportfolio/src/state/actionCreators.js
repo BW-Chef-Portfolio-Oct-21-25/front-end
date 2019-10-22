@@ -41,21 +41,21 @@ export const addUser = user => dispatch =>{
 //log in 
 
 
-export const login = (email, username, password) => dispatch => {
-  dispatch({type: types.LOGIN_START});
-  return withAuth().post('', {
-    email: email,
-    username: username,
-    password: password
-  })
-  .then(res => {
-    dispatch({type: types.LOGIN_SUCCESS, payload: res.data})
-    return true
-  })
-  .catch(response => {
-    dispatch({
-      type: types.LOGIN_FAILED,
-      payload:response.data
-    })
-  })
-}
+// export const login = (username, password) => dispatch => {
+//   dispatch({ type: types.LOGIN_START });
+//   return withAuth()
+//     .post(`https://bwchefportfolio.herokuapp.com/api/users/login `, {
+//       username: username,
+//       password: password
+//     })
+//     .then(res => {
+//       dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
+//       return true;
+//     })
+//     .catch(res => {
+//       dispatch({
+//         type: types.LOGIN_FAILED,
+//         payload: res.data
+//       });
+//     });
+// };

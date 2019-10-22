@@ -15,7 +15,7 @@ export function SignUp (props){
     const {addUser, validationSchema} = props;
 
    const handleSubmit = (values) =>{
-       axios.post('https://chefs-portfolio.herokuapp.com/api/users/register ', {
+       axios.post('https://bwchefportfolio.herokuapp.com/api/users/register', {
            email: values.email,
            username: values.username,
            password: values.password

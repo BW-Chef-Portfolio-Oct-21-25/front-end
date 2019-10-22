@@ -1,13 +1,14 @@
-import axios from "axios";
+import axios from 'axios';
 
-const withAuth = () => {
-  const token = localStorage.getItem("token");
 
-  return axios.create({
-    headers: {
-      Authorization: token
-    },
-    baseURL: "https://chefs-portfolio.herokuapp.com/"
-  });
-};
-export default withAuth;
+
+export default function withAuth() {
+ const token = localStorage.getItem('payload');
+ const instance = axios.create({
+   headers: {
+     'Content-Type': 'application/json',
+     Authorization: token,
+   },
+ });
+ return instance;
+}
