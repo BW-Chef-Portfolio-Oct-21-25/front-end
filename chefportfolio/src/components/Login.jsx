@@ -4,36 +4,50 @@ import axios from "axios";
 import * as actionCreators from '../state/actionCreators';
 
 export function Login(props) {
-  const username = useRef();
-  const password = useRef();
-  const email = useRef();
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+  const emailRef = useRef();
   
 
-  function login(e) {
-    e.preventDefault();
+  const submit = (e) => {
+      e.preventDefault()
     axios
       .post("https://bwchefportfolio.herokuapp.com/api/users/login", {
-        username: username.current.value,
-        password: password.current.value,
-        email: email.current.value,
+        username: usernameRef.current.value,
+        password: passwordRef.current.value,
+        email: emailRef.current.value,
       })
       .then(res => {
        console.log(res)
-       alert('success')
+       props.history.push('/portfolio')
       })
-      .catch(err => {
-          console.log(err)
+      .catch(error => {
+          console.log(error)
       });
   }
 
   return (
-      <form>
-     Login
-      <input name="username" placeholder="Username" ref={username} />
-      <input name="password" placeholder="Password" ref={password} />
-      <input name="email" placeholder="Email" ref={email} />
-      <button onClick={login}>Submit</button>
-    </form>
+      <div>
+          <h1>Log In</h1>
+        <form>
+            <label>
+                Email
+                <input name="email" type="Email" ref={emailRef}/> 
+            </label>
+
+            <label>
+                Username
+                <input name="username" type="text" ref={usernameRef} />
+            </label>
+
+            <label>
+                Password
+                <input name="password" type="Password" ref={passwordRef} />
+            </label>
+
+            <button onClick={submit}>Submit</button>
+        </form>
+    </div>
   );
 }
 
@@ -41,160 +55,3 @@ export default connect(
   state => state,
   actionCreators
 )(Login);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState } from 'react'
-// import axios from 'axios'
-
-
-// const initialLogIn = {
-//     email: " ",
-//     username: " ",
-//     password: " "
-//     //include contact and location
-// }
-
-
-// export function Login(props){
-//     const [user, setUser]= useState(initialLogIn)
-
-//     const onSubmit = e => {
-//         e.preventDefault();
-//         const options = {
-//           method: "POST",
-//           url: "https://bwchefportfolio.herokuapp.com/api/users/login",
-//           data: user
-//         };
-//         axios(options)
-//           .then(res => {
-//             console.log(res.data);
-    
-//             window.localStorage.setItem("token", res.data.token);
-//             props.history.push("/portfolio");
-//           })
-//           .catch(err => {
-//             console.log(err);
-//             alert("An error occurred!");
-//           });
-//     };
-
-//     const onInput = e =>{
-//         setUser({
-//             ...user,
-//             ...{[e.target.name]: e.target.value}
-//         })
-//     }
-
-//     return (
-//         <div>
-//             <h1>Log In</h1>
-//             <form>
-//                 <label>
-//                     Email
-//                     <input name = "email" type = "email" value = {user.email} onChange ={onInput}/>
-//                 </label>
-//                 <label>
-//                     Username
-//                     <input name = "username" type = "text" value = {user.username} onChange ={onInput}/>
-//                 </label>
-//                 <label>
-//                     Password
-//                     <input name = "password" type = "password" value = {user.password} onChange ={onInput}/>
-//                 </label>
-//             </form>
-//             <button onClick = {onSubmit}>Login</button>
-//         </div>
-//     )
-// }
-
-
-
-
-// import { Formik, Form, Field, ErrorMessage } from 'formik';
-// import { connect } from 'react-redux';
-// import { addUser } from "../state/actionCreators";
-// import axios from 'axios'
-
-// const initialLogIn = {
-//     email: " ",
-//     username: " ",
-//     password: " "
-// }
-
-
-// export function Login (props){
-    
-//     const {addUser, validationSchema} = props
-
-//     const onSubmit = (values) => {
-
-//         axios.post('https://bwchefportfolio.herokuapp.com/api/users/login', {
-//             email: values.email,
-//             username: values.username,
-//             password: values.password
-//         })
-//         .then( response => {
-//             localStorage.setItem('token', response.data.token);
-//             console.log(response.data);
-//             props.history.push('/home')
-//         })
-//         .catch(error => console.log(error))
-//     }
-
-
-//     return(
-//         <Formik
-//         validationSchema = {validationSchema}
-//         initialValues = {initialLogIn}
-//         onSubmit = {onSubmit}
-//         render = {props => {
-//             return(
-//                 <Form>
-//                     <h1>Log In</h1>
-//                     <label>
-//                         Email
-//                         <Field type = "email" name = "email"/>
-//                         <ErrorMessage name = "email" component = "div"/>
-//                     </label>
-//                     <label>
-//                         Username
-//                         <Field type = "text" name = "username"/>
-//                         <ErrorMessage name = "username" component = "div"/>
-//                     </label>
-//                     <label>
-//                         Password
-//                         <Field type = "password" name = "password"/>
-//                         <ErrorMessage name = "password" component = "div"/>
-//                     </label>
-//                     <button type = 'submit'>Log In</button>
-//                 </Form>
-//             )
-//         }}
-        
-//         />
-//     )
-// }
-
-
-// const mapStateToProps = state => ({
-//     error: state.error,
-//     addUser: state.addUser,
-//     fetchingData: state.fetchingData
-// })
-
-// export default connect(
-//     mapStateToProps, 
-//     {addUser}
-// )(Login)
