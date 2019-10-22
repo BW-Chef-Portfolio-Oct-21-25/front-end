@@ -6,6 +6,7 @@ const initialLogIn = {
     email: " ",
     username: " ",
     password: " "
+    //include contact and location
 }
 
 
@@ -24,7 +25,7 @@ export function Login(props){
             console.log(res.data);
     
             window.localStorage.setItem("token", res.data.token);
-            props.history.push("/dashboard");
+            props.history.push("/portfolio");
           })
           .catch(err => {
             console.log(err);

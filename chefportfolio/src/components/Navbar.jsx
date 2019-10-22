@@ -5,6 +5,8 @@ import { CreatePost } from './CreatePost';
 import { Login } from './Login';
 import { SignUp } from './SignUp';
 import Success from './sucess';
+import { ChefPortfolio } from './ChefPortfolio';
+
 
 export default function Navbar(props) {
   return (
@@ -15,6 +17,7 @@ export default function Navbar(props) {
         <Link to="/login">Login</Link>
         <Link to="/signup">Sign Up</Link>
         <Link to = "/success">Sucess</Link>
+        <Link to = "/portfolio">Portfolio</Link>
       </nav>
       <main>
         <Route exact path="/" component={Home} />
@@ -22,6 +25,7 @@ export default function Navbar(props) {
         <Route  path="/login" component={Login} />
         <Route  path="/signup" component={SignUp} />
         <Route  path = "/success" component = {Success}/>
+        <Route path = 'portfolio' component = {ChefPortfolio}/>
       </main>
     </div>
   );
