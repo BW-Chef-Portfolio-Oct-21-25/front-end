@@ -1,7 +1,5 @@
-import * as types from './actionTypes'
-import axios from 'axios'
-import withAuth from '../axios/index'
-
+import * as types from './actionTypes';
+import axios from 'axios';
 export function newPost(post) {
   return { type: types.ADD_POST, payload: post };
 }

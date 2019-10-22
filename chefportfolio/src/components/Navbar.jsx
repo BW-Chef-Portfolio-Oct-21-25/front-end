@@ -1,14 +1,22 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
+import { connect } from 'react-redux';
+import { Link, Route, Redirect } from "react-router-dom";
 import { Home } from "./Home";
-import { CreatePost } from './CreatePost';
 import { Login } from './Login';
-import { SignUp } from './SignUp'
-import Success from './sucess';
-import { ChefPortfolio } from './ChefPortfolio';
+import { CreatePost } from './CreatePost';
+import { SignUp } from './SignUp';
+import  Success  from './sucess';
+import { ChefPortfolio } from './ChefPortfolio';  
+
+const PrivateRoute = (Component, props) => {
+    return localStorage.getItem('token') ? (<Component {...props}/>) : (<Redirect to='/'/>)
+}
 
 
-export default function Navbar(props) {
+export function Navbar(props) {
+    const logout = () => {
+        localStorage.removeItem('token');
+    }
   return (
     <div>
       <nav>
@@ -30,3 +38,4 @@ export default function Navbar(props) {
     </div>
   );
 }
+export default connect(state=>state, {})(Navbar);
