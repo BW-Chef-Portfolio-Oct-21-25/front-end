@@ -5,6 +5,8 @@ import { Home } from "./Home";
 import { Login } from './Login';
 import { CreatePost } from './CreatePost';
 import { SignUp } from './SignUp';
+import  Success  from './sucess';
+import { ChefPortfolio } from './ChefPortfolio';  
 
 const PrivateRoute = (Component, props) => {
     return localStorage.getItem('token') ? (<Component {...props}/>) : (<Redirect to='/'/>)
@@ -22,13 +24,16 @@ export function Navbar(props) {
         <Link to="/createpost">Create Post</Link>
         <Link to="/login">Login</Link>
         <Link to="/signup">Sign Up</Link>
-        <button onClick={logout}>Log Out</button>
+        <Link to = "/success">Sucess</Link>
+        <Link to = "/portfolio">Portfolio</Link>
       </nav>
       <main>
         <Route exact path="/" component={Home} />
-        <Route exact path="/createpost" render={props => PrivateRoute(CreatePost, props)} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={SignUp} />
+        <Route  path="/createpost" component={CreatePost} />
+        <Route  path="/login" component={Login} />
+        <Route  path="/signup" component={SignUp} />
+        <Route  path = "/success" component = {Success}/>
+        <Route path = 'portfolio' component = {ChefPortfolio}/>
       </main>
     </div>
   );
