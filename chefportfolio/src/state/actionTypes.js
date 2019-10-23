@@ -1,5 +1,6 @@
-export const ADD_POST = 'ADD_POST';
+//Homepage, get all posts
 
+export const ADD_POST = 'ADD_POST';
 
 export const GET_POSTS = 'GET_POSTS';
 
@@ -23,8 +24,6 @@ export const GET_CHEFS_SUCCESS = 'GET_CHEFS_SUCCESS';
 
 export const GET_CHEFS_FAILURE = 'GET_CHEFS_FAILURE';
 
-
-export const GET_POSTS = 'GET_POSTS';
 
 //registration
 
