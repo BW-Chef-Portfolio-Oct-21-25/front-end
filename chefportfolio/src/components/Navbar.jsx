@@ -3,8 +3,9 @@ import { Link, Route } from "react-router-dom";
 import Home from "./Home";
 import { CreatePost } from './CreatePost';
 import { Login } from './Login';
-import { SignUp } from './SignUp';
+import SignUp from './SignUp';
 // import { ChefList } from './chefs/ChefList'
+import SinglePost from './SinglePost';
 
 export default function Navbar(props) {
   return (
@@ -27,6 +28,7 @@ export default function Navbar(props) {
         <Route exact path="/createpost" component={CreatePost} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
+        <Route exact path='/post/:postId' render={props => <SinglePost {...props}/> } />
         {/* <Route exact path="" component={ChefList}/> */}
       </main>
     </div>

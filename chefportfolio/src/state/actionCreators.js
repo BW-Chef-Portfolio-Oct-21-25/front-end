@@ -28,25 +28,6 @@ export const getPosts = () => dispatch => {
     )
 } 
 
-export const getSinglePost = (props) => dispatch => {
-  const id = props.match.params.id;
-  Axios
-    .get(`https://bwchefportfolio.herokuapp.com/api/users/post${id}`)
-    .then(res => {
-      console.log(res);
-      // dispatch({
-      //   type: types.GET_SINGLE_POST_SUCCESS,
-      //   payload: res.data.posts.item
-      // })
-    })
-    .catch(err => 
-      dispatch({
-        type: types.GET_SINGLE_POST_FAILURE,
-        payload: err.message
-      })
-    )
-}
-
 export const getAllChefs = () => dispatch => {
   Axios
     .get('/chef')

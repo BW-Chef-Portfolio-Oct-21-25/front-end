@@ -3,34 +3,36 @@ import Axios from 'axios';
 import { getSinglePost } from '../state/actionCreators';
 
 export default function SingleNewPost (props) {
-    const [singlePost, setSinglePost] = useState(null);
+    // console.dir(props);
+    // console.log(posts);
+    // const user  = posts.find(item => item.id === Number(props.match.params.postId))
+    // console.log(item);
+    const [singlePost, setSinglePost] = useState({});
 
-     const { id }= props.match.params.id;
+    const id = props.match.params.postId;
 
-    // useEffect(() => {
-    //     getSinglePost();
-    // }, [id]);
     useEffect(() => {
         Axios
-            .get(`https://bwchefportfolio.herokuapp.com/api/users/post${id}`)
+            .get(`https://bwchefportfolio.herokuapp.com/api/users/post/${id}`)
             .then(res => {
-                setSinglePost(res.data);
+                console.log(res.data.post)
+                setSinglePost(res.data.post);
             })
             .catch(err => {
-                console.error(err);
-            });
-        }, [id]);
+                console.log(err);
+            })
+    }, [id]);
 
-        if(!singlePost) {
-            return <div>Loading Post info...</div>
-        }
 
-    const { imgURL, title, yield, serving, total_time, cook_time} = singlePost;
-
+    if(!singlePost) {
+        return <div>Loading Post Info...</div>
+    }
+    // const { user } = props;
+    const { ingredient, title, serving, total_time, cook_time } = singlePost;
     return (
         <div>
             <h4>{title}</h4>
-            <p>{yield}</p>
+            <p>{ingredient}</p>
             <p>{serving}</p>
             <p>{total_time}</p>
             <p>{cook_time}</p>
