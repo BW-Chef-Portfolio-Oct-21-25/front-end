@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import * as actionCreators from '../state/actionCreators';
 import './scss/login.scss'
+import { Link } from 'react-router-dom'
 
 export function Login(props) {
   const usernameRef = useRef();
@@ -50,7 +51,9 @@ export function Login(props) {
 
                 <button onClick={submit}>Submit</button>
             </form>
+            <p>Don't have an account yet? <Link to = "/signup"> Sign Up</Link> </p>
           </div>
+
         <div className = "bottom-design"></div>
     </div>
   );
