@@ -49,7 +49,7 @@ export function Login(props) {
                     <input name="password" type="Password" ref={passwordRef} />
                 </label>
 
-                <button onClick={submit}>Submit</button>
+                <button className = "login-button" onClick={submit}>Submit</button>
             </form>
             <p>Don't have an account yet? <Link to = "/signup"> Sign Up</Link> </p>
           </div>
