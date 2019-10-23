@@ -10,6 +10,7 @@ const initialState = {
         directions: '' 
     },
     posts: [],
+    chefs: [],
     isFetching: false,
     error: ""
 };
@@ -18,14 +19,12 @@ export function postReducer(state = initialState, action){
     switch(action.type){
         case types.ADD_POST: 
         return {
-
         }
         case types.GET_POSTS: 
         return {
             ...state,
         }
         case types.GET_POSTS_SUCCESS:
-            console.log(action.payload)
             return {
                 ...state,
                 posts: action.payload,
@@ -37,6 +36,22 @@ export function postReducer(state = initialState, action){
                 ...state,
                 error: action.payload,
             } 
+            case types.GET_SINGLE_POST: 
+            return {
+                ...state,
+            }
+            case types.GET_SINGLE_POST_SUCCESS:
+                return {
+                    ...state,
+                    posts: action.payload,
+                    isFetching: false,
+                    error: ""
+                }
+            case types.GET_SINGLE_POST_FAILURE:
+                return {
+                    ...state,
+                    error: action.payload,
+                } 
         default:
             return state;
     }
