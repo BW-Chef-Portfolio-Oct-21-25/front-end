@@ -1,38 +1,28 @@
+import Axios from "axios";
+import * as types from "./actionTypes";
 
-import Axios from 'axios';
-import * as types from './actionTypes';
-
-Axios.defaults.baseURL = 'https://bwchefportfolio.herokuapp.com/api/users';
-
-export const newPost = (post) => {
-  return { 
-    type: types.ADD_POST, 
-    payload: post 
-  };
-}
+Axios.defaults.baseURL = "https://bwchefportfolio.herokuapp.com/api/users";
 
 export const getPosts = () => dispatch => {
-  Axios
-    .get('/post')
+  Axios.get("/post")
     .then(res => {
       // console.log(res);
       dispatch({
         type: types.GET_POSTS_SUCCESS,
         payload: res.data.posts
-      })
+      });
     })
     .catch(err =>
       dispatch({
         type: types.GET_POSTS_FAILURE,
         payload: err.message
       })
-    )
-} 
+    );
+};
 
-export const getSinglePost = (props) => dispatch => {
+export const getSinglePost = props => dispatch => {
   const id = props.match.params.id;
-  Axios
-    .get(`https://bwchefportfolio.herokuapp.com/api/users/post${id}`)
+  Axios.get(`https://bwchefportfolio.herokuapp.com/api/users/post${id}`)
     .then(res => {
       console.log(res);
       // dispatch({
@@ -40,70 +30,59 @@ export const getSinglePost = (props) => dispatch => {
       //   payload: res.data.posts.item
       // })
     })
-    .catch(err => 
+    .catch(err =>
       dispatch({
         type: types.GET_SINGLE_POST_FAILURE,
         payload: err.message
       })
-    )
-}
+    );
+};
 
 export const getAllChefs = () => dispatch => {
-  Axios
-    .get('/chef')
+  Axios.get("/chef")
     .then(res => {
       dispatch({
         type: types.GET_CHEFS_SUCCESS,
         payload: res.data
-      })
+      });
     })
-    .catch(err => 
+    .catch(err =>
       dispatch({
         type: types.GET_CHEFS_FAILURE,
         payload: err.message
       })
-    )
-}
-import * as types from './actionTypes';
-import axios from 'axios';
-export function newPost(post) {
-  return { type: types.ADD_POST, payload: post };
-}
-export function getPosts(posts) {
-    return { type: types.GET_POSTS, payload: posts };
-}
+    );
+};
 
 //Registration
 
-export const addUser = user => dispatch =>{
+export const addUser = user => dispatch => {
   dispatch({
     type: types.SIGNUP_NEW
   });
-  axios.post('', {
+  Axios.post("", {
     email: user.email,
     username: user.username,
     password: user.password
   })
-  .then(res => {
-    console.log(res.data);
-    dispatch({
-      type: types.SIGNUP_SUCCESS,
-      payload: res.data
+    .then(res => {
+      console.log(res.data);
+      dispatch({
+        type: types.SIGNUP_SUCCESS,
+        payload: res.data
+      });
+      return true;
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch({
+        type: types.SIGNUP_FAILED,
+        payload: error.response
+      });
     });
-    return true;
-  })
-  .catch(error =>{
-    console.log(error);
-    dispatch({
-      type: types.SIGNUP_FAILED, 
-      payload: error.response
-    });
-  });
-}
+};
 
-
-//log in 
-
+//log in
 
 // export const login = (username, password) => dispatch => {
 //   dispatch({ type: types.LOGIN_START });
@@ -123,4 +102,3 @@ export const addUser = user => dispatch =>{
 //       });
 //     });
 // };
-

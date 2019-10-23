@@ -11,7 +11,6 @@ function App({ state, getPosts }) {
     <Router>
     <div className="App">
       <Navbar />
-      <Home />
     </div>
     </Router>
   );

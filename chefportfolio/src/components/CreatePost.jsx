@@ -1,37 +1,37 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
 import axiosWithAuth from '../axiosWithAuth';
 import * as actionCreators from "../state/actionCreators";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-const StyledCreatePost = styled.div`
-  display: flex;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 70vw;
-    margin: 0 auto;
-    input,
-    select,
-    button {
-      margin: 1rem 0;
-      height: 2rem;
-      border: 1px solid grey;
-      border-radius: 6px;
-      padding-left: 0.5rem;
-    }
-    textarea {
-      padding: 0.6rem 0 0 0.5rem;
-      border: 1px solid grey;
-      border-radius: 6px;
-      height: 4rem;
-      margin: 1rem 0;
-    }
-  }
-`;
+// const StyledCreatePost = styled.div`
+//   display: flex;
+//   width: 100vw;
+//   justify-content: center;
+//   align-items: center;
+//   form {
+//     display: flex;
+//     flex-direction: column;
+//     width: 70vw;
+//     margin: 0 auto;
+//     input,
+//     select,
+//     button {
+//       margin: 1rem 0;
+//       height: 2rem;
+//       border: 1px solid grey;
+//       border-radius: 6px;
+//       padding-left: 0.5rem;
+//     }
+//     textarea {
+//       padding: 0.6rem 0 0 0.5rem;
+//       border: 1px solid grey;
+//       border-radius: 6px;
+//       height: 4rem;
+//       margin: 1rem 0;
+//     }
+//   }
+// `;
 
 export function CreatePost(props) {
   const imgURL = useRef();
@@ -46,6 +46,7 @@ export function CreatePost(props) {
   const total_time = useRef();
   const oven_temp = useRef();
   const yieldRef = useRef();
+  const chef_id = localStorage.getItem('id');
 
   function createPost(e) {
     e.preventDefault();
@@ -57,7 +58,7 @@ export function CreatePost(props) {
         meal_type: mealType.current.value,
         ingredient: ingredient.current.value,
         ingredient_id: 4,
-        chef_id: 4,
+        chef_id: chef_id,
         directions: directions.current.value,
         description: description.current.value,
         prep_time: prep_time.current.value,
@@ -66,7 +67,7 @@ export function CreatePost(props) {
         yield: yieldRef.current.value,
       })
       .then(res => {
-        actionCreators.newPost(res.data.post);
+        // actionCreators.newPost(res.data.post);
         console.log(res.data);
         alert("success");
         props.history.push("/");
@@ -78,7 +79,7 @@ export function CreatePost(props) {
   }
 
   return (
-    <StyledCreatePost>
+    <div>
       <form>
         <h1>Create Post</h1>
         <input name="title" placeholder="Title" ref={title} />
@@ -105,11 +106,8 @@ export function CreatePost(props) {
         <input name="yield" placeholder="Yield" ref={yieldRef} />
         <button onClick={createPost}>Submit</button>
       </form>
-    </StyledCreatePost>
+    </div>
   );
 }
 
-export default connect(
-  state => state,
-  actionCreators
-)(CreatePost);
+export default connect(state => state, actionCreators)(CreatePost);
