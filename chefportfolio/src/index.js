@@ -3,20 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Provider } from 'react-redux';
-import * as reducers from './state/reducers';
+import { Provider } from "react-redux";
+import * as reducers from "./state/reducers";
 import { combineReducers, createStore } from "redux";
 
 const monsterReducer = combineReducers({
     post: reducers.postReducer,
-    posts: reducers.postReducer
+    posts: reducers.postReducer,
+    user: reducers.userReducer,
+    users: reducers.usersReducer
   });
   
   const store = createStore(
     monsterReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
-  
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

@@ -36,6 +36,15 @@ export const addUser = user => dispatch =>{
 }
 
 
+export const setUser = (user) => {
+    return{ type: types.SET_USER, payload: user}
+}
+
+export const addUser = (user) => {
+  return{ type: types.ADD_USER, payload: user}
+}
+
+
 //log in 
 
 

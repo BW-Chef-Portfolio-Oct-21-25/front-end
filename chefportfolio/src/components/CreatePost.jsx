@@ -1,8 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
 import axiosWithAuth from '../axiosWithAuth';
 import * as actionCreators from "../state/actionCreators";
 import styled from "styled-components";
+
 
 const StyledCreatePost = styled.div`
   display: flex;
@@ -36,7 +37,6 @@ const StyledCreatePost = styled.div`
 export function CreatePost(props) {
   const imgURL = useRef();
   const title = useRef();
-  const chef = useRef();
   const mealType = useRef();
   const ingredient = useRef();
   const directions = useRef();
@@ -53,7 +53,7 @@ export function CreatePost(props) {
       .post("https://bwchefportfolio.herokuapp.com/api/users/post", {
         imgURL: imgURL.current.value,
         title: title.current.value,
-        chef: chef.current.value,
+        chef: props.user.user.username,
         meal_type: mealType.current.value,
         ingredient: ingredient.current.value,
         ingredient_id: 4,
@@ -82,7 +82,6 @@ export function CreatePost(props) {
       <form>
         <h1>Create Post</h1>
         <input name="title" placeholder="Title" ref={title} />
-        <input name="chef" placeholder="Chef" ref={chef} />
         {/* <input type='file' ref={imgURL}/> */}
         <input name="imgURL" placeholder="Image URL" ref={imgURL} />
         <input name="description" placeholder="Description" ref={description} />
