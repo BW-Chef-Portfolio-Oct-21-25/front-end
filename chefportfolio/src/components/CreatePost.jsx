@@ -58,13 +58,13 @@ export function CreatePost(props) {
         meal_type: mealType.current.value,
         ingredient: ingredient.current.value,
         ingredient_id: 4,
-        chef_id: chef_id,
         directions: directions.current.value,
         description: description.current.value,
         prep_time: prep_time.current.value,
         cook_time: cook_time.current.value,
         oven_temperature: oven_temp.current.value,
         yield: yieldRef.current.value,
+        chef_id: chef_id,
       })
       .then(res => {
         // actionCreators.newPost(res.data.post);
@@ -73,7 +73,6 @@ export function CreatePost(props) {
         props.history.push("/");
       })
       .catch(err => {
-        debugger;
         alert(err.response.data.message);
       });
   }

@@ -2,10 +2,12 @@ import React from 'react';
 import * as actionCreators from '../state/actionCreators';
 import { connect } from 'react-redux';
 
-export function ChefPortfolio (){
+export function ChefPortfolio(props){
     return(
         <div>
-            <p>Chef Portfolio</p>
+             <form>
+            <input />
+      </form>
         </div>
     )
 }
