@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import * as actionCreators from '../state/actionCreators';
+import './scss/login.scss'
 
 export function Login(props) {
   const usernameRef = useRef();
@@ -27,26 +28,30 @@ export function Login(props) {
   }
 
   return (
-      <div>
-          <h1>Log In</h1>
-        <form>
-            <label>
-                Email
-                <input name="email" type="Email" ref={emailRef}/> 
-            </label>
+      <div className = "container">
+        <div className = "top-design"></div>
+        <div className ="login-form">
+            <h1>Log In</h1>
+            <form>
+                <label>
+                    Email
+                    <input name="email" type="Email" ref={emailRef}/> 
+                </label>
 
-            <label>
-                Username
-                <input name="username" type="text" ref={usernameRef} />
-            </label>
+                <label>
+                    Username
+                    <input name="username" type="text" ref={usernameRef} />
+                </label>
 
-            <label>
-                Password
-                <input name="password" type="Password" ref={passwordRef} />
-            </label>
+                <label>
+                    Password
+                    <input name="password" type="Password" ref={passwordRef} />
+                </label>
 
-            <button onClick={submit}>Submit</button>
-        </form>
+                <button onClick={submit}>Submit</button>
+            </form>
+          </div>
+        <div className = "bottom-design"></div>
     </div>
   );
 }

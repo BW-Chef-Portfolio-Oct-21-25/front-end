@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    box-shadow: 5px 5px #D0D0D0;
+}
+
+.top-design{
+    background-color:  #c4c4c4;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    grid-column-start: 1;
+    grid-column-end:5;
+}
+
+.login-form{
+    background-color: #fff; 
+    border: 1px solid #c4c4c4;
+    border-radius: 5%;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end:4;
+    z-index: 4;
+    margin-top: 20%;
+}
+
+.login-form label {
+    display: block;
+}
+
+.login-form label input{
+    display: block;
+    width: 90%;
+    margin: 2rem 2rem;
+    padding: 0.5rem 0;
+    border: 1px solid #c4c4c4;
+    
+}
+
+.bottom-design{
+    grid-row-start: 2;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end:5;
+}
+
+button{
+    padding: 1rem 2.5rem ;
+    border-radius: 1rem;
+    color: #fff;
+    background-color: #c4c4c4;
+}
