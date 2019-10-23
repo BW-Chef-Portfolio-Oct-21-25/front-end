@@ -38,7 +38,7 @@ export function Navbar(props) {
         <Route exact path="/signup" component={SignUp} />
         {/* <Route exact path="" component={ChefList}/> */}
         <Route  path = "/success" component = {Success}/>
-        <Route path = 'portfolio' component = {ChefPortfolio}/>
+        <Route path = '/portfolio' component = {ChefPortfolio} exact/>
       </main>
     </div>
   );

@@ -46,30 +46,30 @@ export function CreatePost(props) {
   const total_time = useRef();
   const oven_temp = useRef();
   const yieldRef = useRef();
-  const chef_id = localStorage.getItem('id');
+  const chef_id = localStorage.getItem('userID');
+  
 
   function createPost(e) {
     e.preventDefault();
     axiosWithAuth()
-      .post("https://bwchefportfolio.herokuapp.com/api/users/post", {
-        imgURL: imgURL.current.value,
-        title: title.current.value,
-        chef: chef.current.value,
-        meal_type: mealType.current.value,
-        ingredient: ingredient.current.value,
-        ingredient_id: 4,
-        chef_id: chef_id,
-        directions: directions.current.value,
-        description: description.current.value,
-        prep_time: prep_time.current.value,
-        cook_time: cook_time.current.value,
-        oven_temperature: oven_temp.current.value,
-        yield: yieldRef.current.value,
+     .post('https://bwchefportfolio.herokuapp.com/api/users/post', {
+       imgURL: imgURL.current.value,
+       title: title.current.value,
+       chef: chef.current.value,
+       meal_type: mealType.current.value,
+       ingredient: ingredient.current.value,
+       ingredient_id: 4,
+       directions: directions.current.value,
+       description: description.current.value,
+       prep_time: prep_time.current.value,
+       cook_time: cook_time.current.value,
+       oven_temperature: oven_temp.current.value,
+       yield: yieldRef.current.value,
+       chef_id: chef_id
       })
       .then(res => {
         // actionCreators.newPost(res.data.post);
         console.log(res.data);
-        alert("success");
         props.history.push("/");
       })
       .catch(err => {
