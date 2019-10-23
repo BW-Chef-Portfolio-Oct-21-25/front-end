@@ -6,7 +6,7 @@ import { Login } from './Login';
 import { CreatePost } from './CreatePost';
 import { SignUp } from './SignUp';
 import  Success  from './sucess';
-import { ChefPortfolio } from './ChefPortfolio';  
+import { Portfolio } from './Portfolio';
 
 const PrivateRoute = (Component, props) => {
     return localStorage.getItem('token') ? (<Component {...props}/>) : (<Redirect to='/'/>)
@@ -33,7 +33,7 @@ export function Navbar(props) {
         <Route  path="/login" component={Login} />
         <Route  path="/signup" component={SignUp} />
         <Route  path = "/success" component = {Success}/>
-        <Route path = 'portfolio' component = {ChefPortfolio}/>
+        <Route path = 'portfolio' component = {Portfolio}/>
       </main>
     </div>
   );
