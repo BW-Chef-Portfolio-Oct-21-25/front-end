@@ -5,9 +5,6 @@ import { connect } from 'react-redux';
 export function ChefPortfolio(props){
     return(
         <div>
-             <form>
-            <input />
-      </form>
         </div>
     )
 }

@@ -6,11 +6,11 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import * as actions from './state/actionCreators';
 
-function App({ state, getPosts }) {
+function App(props) {
   return (
     <Router>
     <div className="App">
-      <Navbar />
+      <Navbar/>
     </div>
     </Router>
   );
