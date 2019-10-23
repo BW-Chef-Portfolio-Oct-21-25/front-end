@@ -46,6 +46,7 @@ export function CreatePost(props) {
   const total_time = useRef();
   const oven_temp = useRef();
   const yieldRef = useRef();
+  const chef_id = localStorage.getItem('id');
 
   function createPost(e) {
     e.preventDefault();
@@ -57,7 +58,7 @@ export function CreatePost(props) {
         meal_type: mealType.current.value,
         ingredient: ingredient.current.value,
         ingredient_id: 4,
-        chef_id: 4,
+        chef_id: chef_id,
         directions: directions.current.value,
         description: description.current.value,
         prep_time: prep_time.current.value,

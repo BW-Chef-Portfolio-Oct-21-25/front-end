@@ -20,6 +20,7 @@ export function Login(props) {
       .then(res => {
        console.log(res)
        localStorage.setItem('token', res.data.token)
+       localStorage.setItem('userID', res.data.id);
        props.history.push('/portfolio')
       })
       .catch(error => {
