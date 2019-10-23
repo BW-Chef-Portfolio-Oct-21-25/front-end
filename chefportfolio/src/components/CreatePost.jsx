@@ -78,9 +78,9 @@ export function CreatePost(props) {
   }
 
   return (
-    <div>
-      <form>
-        <h1>Create Post</h1>
+      <div className='create_post'>
+        <form>
+        <h1>Create New Recipe</h1>
         <input name="title" placeholder="Title" ref={title} />
         <input name="chef" placeholder="Chef" ref={chef} />
         {/* <input type='file' ref={imgURL}/> */}
@@ -105,7 +105,7 @@ export function CreatePost(props) {
         <input name="yield" placeholder="Yield" ref={yieldRef} />
         <button onClick={createPost}>Submit</button>
       </form>
-    </div>
+      </div>
   );
 }
 

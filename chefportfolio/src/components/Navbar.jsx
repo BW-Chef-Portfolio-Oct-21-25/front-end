@@ -11,13 +11,13 @@ import ChefPortfolio from './ChefPortfolio';
 import * as actionCreators from '../state/actionCreators';
 
 const PrivateRoute = (Component, props) => {
-    return localStorage.getItem('token') ? (<Component {...props}/>) : (<Redirect to='/'/>)
+    return localStorage.getItem('token')? (<Component {...props}/>) : (<Redirect to='/'/>)
 }
 
 export function Navbar(props) {
+
   return (
     <div>
-
       <nav className="navbar">
         <div className="left-nav">
           <span className="red">Chef<span className="green">Diaries</span></span>
