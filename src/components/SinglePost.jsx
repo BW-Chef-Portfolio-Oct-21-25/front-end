@@ -28,6 +28,8 @@ export function SinglePost(props) {
       <p>{props.post.post.serving}</p>
       <p>{props.post.post.total_time}</p>
       <p>{props.post.post.cook_time}</p>
+      <p>{props.post.post.ingredient}</p>
+      <p>{props.post.post.directions}</p>
     </div>
   );
 }
