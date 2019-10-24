@@ -32,6 +32,7 @@ export function chefReducer(state = initialState, action){
 
 export function postReducer(state = initialState, action){
     switch(action.type){
+
         case types.ADD_POST: 
         return {posts: [...state.posts, action.payload]}
 
@@ -71,4 +72,3 @@ export function postReducer(state = initialState, action){
             return state;
     }
 }
-

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
+import axiosWithAuth from '../../axiosWithAuth';
 
-export default function SingleChief (props) {
+export default function SingleChef (props) {
     console.log(props);
 
     const [singleChef, setSingleChef] = useState({});
 
-    const id = props.match.params.chefId;
+    const id = props.match.params.id;
 
     useEffect(() => {
-        Axios
-            .get(`https://chefs-portfolio.herokuapp.com/api/users/chef/${id}`)
+        axiosWithAuth()
+            .get(`https://bwchefportfolio.herokuapp.com/api/users/chef/${id}`)
             .then(res => {
                 console.log(res.data.chef);
                 setSingleChef(res.data.chef);

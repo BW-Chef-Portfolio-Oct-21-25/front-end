@@ -50,3 +50,4 @@ export default connect(
   mapStateToProps,
   actionCreators
 )(ChefPortfolio);
+
