@@ -118,3 +118,6 @@
 .cook-time {
   color: #fff;
 }
+.chef-container {
+  border: 1px solid red;
+}

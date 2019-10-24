@@ -11,7 +11,7 @@ import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 
 const monsterReducer = combineReducers({
     posts: reducers.postReducer,
-    // chefs: reducers.chefReducer,
+    chefs: reducers.chefReducer,
   });
   
   const store = createStore(

@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import { getSinglePost } from '../state/actionCreators';
 
 export default function SingleNewPost (props) {
-    // console.dir(props);
-    // console.log(posts);
-    // const user  = posts.find(item => item.id === Number(props.match.params.postId))
-    // console.log(item);
     const [singlePost, setSinglePost] = useState({});
 
     const id = props.match.params.postId;
@@ -27,7 +22,6 @@ export default function SingleNewPost (props) {
     if(!singlePost) {
         return <div>Loading Post Info...</div>
     }
-    // const { user } = props;
     const { ingredient, title, serving, total_time, cook_time } = singlePost;
     return (
         <div>

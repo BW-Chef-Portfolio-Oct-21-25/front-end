@@ -4,8 +4,9 @@ import Home from "./Home";
 import { CreatePost } from './CreatePost';
 import { Login } from './Login';
 import SignUp from './SignUp';
-// import { ChefList } from './chefs/ChefList'
+import { ChefList } from './chefs/ChefList'
 import SinglePost from './SinglePost';
+import SingleChef from './chefs/SingleChef';
 
 export default function Navbar(props) {
   return (
@@ -19,18 +20,10 @@ export default function Navbar(props) {
           <Link to="/createpost">Create Post</Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-          {/* <Link to="/chefs">Chefs</Link> */}
-
+          <Link to="/chefs">Chefs</Link>
         </div>
       </nav>
-      <main>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/createpost" component={CreatePost} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route exact path='/post/:postId' render={props => <SinglePost {...props}/> } />
-        {/* <Route exact path="" component={ChefList}/> */}
-      </main>
+      
     </div>
   );
 }

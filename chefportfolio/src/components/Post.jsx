@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { getSinglePost } from '../state/actionCreators';
+import React from 'react';
 
 export default function Post({ post }) {
 

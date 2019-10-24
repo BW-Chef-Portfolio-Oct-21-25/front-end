@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link, Route, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as actions from '../state/actionCreators';
 import Post from './Post';
-import SinglePost from './SinglePost';
-
 
 // export function Home({posts, getPosts, isFetching }) {
     export function Home(props) {
@@ -14,9 +12,9 @@ import SinglePost from './SinglePost';
         getPosts();
     }, []);
     
-    // if(!singlePost) {
-    //     return <div>Loading Post info...</div>
-    // }
+    if(!posts) {
+        return <div>Loading Posts info...</div>
+    }
     return (
         <div className="post-main-container">
              <ul className="posts-list-container">
@@ -27,9 +25,6 @@ import SinglePost from './SinglePost';
                     </Link>
                 ))}
             </ul>
-            {/* <main> */}
-
-            {/* </main> */}
         </div>
     );
 }

@@ -14,7 +14,6 @@ export const getPosts = () => dispatch => {
   Axios
     .get('/post')
     .then(res => {
-      // console.log(res);
       dispatch({
         type: types.GET_POSTS_SUCCESS,
         payload: res.data.posts
@@ -30,8 +29,9 @@ export const getPosts = () => dispatch => {
 
 export const getAllChefs = () => dispatch => {
   Axios
-    .get('/chef')
+    .get('https://chefs-portfolio.herokuapp.com/api/users/chef')
     .then(res => {
+       console.log(res.data);
       dispatch({
         type: types.GET_CHEFS_SUCCESS,
         payload: res.data
