@@ -1,13 +1,7 @@
 import React from "react";
-
-import { Link, Route } from "react-router-dom";
 import Home from "./Home";
-import { CreatePost } from './CreatePost';
-
 import { connect } from 'react-redux';
 import { Link, Route, Redirect } from "react-router-dom";
-import { Home } from "./Home";
-
 import { Login } from './Login';
 import { CreatePost } from './CreatePost';
 import { SignUp } from './SignUp';
@@ -49,7 +43,7 @@ export function Navbar(props) {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         {/* <Route exact path="" component={ChefList}/> */}
-
+        </main>
       <nav>
         <Link to="/">Home</Link>
         <Link to="/createpost">Create Post</Link>
