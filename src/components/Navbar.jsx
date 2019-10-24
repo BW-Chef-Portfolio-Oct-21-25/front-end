@@ -90,4 +90,5 @@ export function Navbar(props) {
     </div>
   );
 }
+
 export default connect(state => state, actionCreators)(Navbar);

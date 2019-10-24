@@ -18,7 +18,6 @@ export function CreatePost(newPost) {
   const oven_temp = useRef();
   const yieldRef = useRef();
   const chef_id = localStorage.getItem('userID');
-  
 
   function createPost(e) {
     e.preventDefault();
@@ -78,6 +77,7 @@ export function CreatePost(newPost) {
         <input name="yield" placeholder="Yield" ref={yieldRef} />
         <button onClick={createPost}>Submit</button>
       </form>
+
       </div>
   );
 }

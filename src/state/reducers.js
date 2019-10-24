@@ -17,6 +17,7 @@ const initialState = {
 
 export function postReducer(state = initialState, action){
     switch(action.type){
+
         case types.ADD_POST: 
         return {...state, posts: [...state, action.payload]}
 
@@ -56,4 +57,3 @@ export function postReducer(state = initialState, action){
             return state;
     }
 }
-
