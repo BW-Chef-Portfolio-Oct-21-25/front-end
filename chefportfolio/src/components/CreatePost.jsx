@@ -2,36 +2,8 @@ import React, { useRef } from "react";
 import { connect } from "react-redux";
 import axiosWithAuth from '../axiosWithAuth';
 import * as actionCreators from "../state/actionCreators";
-// import styled from "styled-components";
-
-// const StyledCreatePost = styled.div`
-//   display: flex;
-//   width: 100vw;
-//   justify-content: center;
-//   align-items: center;
-//   form {
-//     display: flex;
-//     flex-direction: column;
-//     width: 70vw;
-//     margin: 0 auto;
-//     input,
-//     select,
-//     button {
-//       margin: 1rem 0;
-//       height: 2rem;
-//       border: 1px solid grey;
-//       border-radius: 6px;
-//       padding-left: 0.5rem;
-//     }
-//     textarea {
-//       padding: 0.6rem 0 0 0.5rem;
-//       border: 1px solid grey;
-//       border-radius: 6px;
-//       height: 4rem;
-//       margin: 1rem 0;
-//     }
-//   }
-// `;
+import * as dataURI from 'image-data-uri';
+import axios from 'axios';
 
 export function CreatePost(props) {
   const imgURL = useRef();
@@ -52,7 +24,6 @@ export function CreatePost(props) {
     e.preventDefault();
     axiosWithAuth()
       .post("https://bwchefportfolio.herokuapp.com/api/users/post", {
-        imgURL: imgURL.current.value,
         title: title.current.value,
         chef: chef.current.value,
         meal_type: mealType.current.value,
@@ -77,6 +48,16 @@ export function CreatePost(props) {
       });
   }
 
+  const upload = e => {
+    e.preventDefault();
+    dataURI.encodeFromFile(imgURL.current.value)
+    .then(res=> console.log(res))
+    // console.log(image)
+    // axios.post('https://api.cloudinary.com/v1_1/lambda-meg/image/upload', image)
+    // .then(res=> {console.log(res)})
+    // .catch(err => console.log(err))
+  }
+
   return (
       <div className='create_post'>
         <form>
@@ -84,7 +65,8 @@ export function CreatePost(props) {
         <input name="title" placeholder="Title" ref={title} />
         <input name="chef" placeholder="Chef" ref={chef} />
         {/* <input type='file' ref={imgURL}/> */}
-        <input name="imgURL" placeholder="Image URL" ref={imgURL} />
+        <input name="file" placeholder="Image URL" ref={imgURL} type='file'/>
+        <button onClick={upload}>Upload</button>
         <input name="description" placeholder="Description" ref={description} />
         <select ref={mealType}>
           <option>Breakfast</option>

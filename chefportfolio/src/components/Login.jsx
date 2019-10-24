@@ -24,7 +24,7 @@ export function Login(props) {
        props.history.push('/portfolio')
       })
       .catch(error => {
-          console.log(error)
+          alert(error)
       });
   }
 

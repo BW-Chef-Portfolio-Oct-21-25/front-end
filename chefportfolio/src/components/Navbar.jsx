@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link, Route, Redirect } from "react-router-dom";
 import Home from "./Home";
@@ -20,9 +20,8 @@ const PrivateRoute = (Component, props) => {
 
 export function Navbar(props) {
   const logout = e => {
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("userID");
-    console.log(props)
+    localStorage.removeItem("token");
+    localStorage.removeItem("userID");
   };
   return (
     <div>
@@ -88,7 +87,4 @@ export function Navbar(props) {
     </div>
   );
 }
-export default connect(
-  state => state,
-  actionCreators
-)(Navbar);
+export default connect(state => state, actionCreators)(Navbar);
