@@ -1,39 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
-import { getSinglePost } from '../state/actionCreators';
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
+import { getSinglePost } from "../state/actionCreators";
+import { connect } from "react-redux";
+import * as actionCreators from "../state/actionCreators";
 
-export default function SingleNewPost (props) {
-    const [singlePost, setSinglePost] = useState(null);
+export function SinglePost(props) {
+  const id = props.match.params.postId;
+  useEffect(() => {
+    Axios.get(`https://bwchefportfolio.herokuapp.com/api/users/post/${id}`)
+      .then(res => {
+        console.log(res);
+        props.setSinglePost(res.data.post);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
 
-     const { id }= props.match.params.id;
-
-    // useEffect(() => {
-    //     getSinglePost();
-    // }, [id]);
-    useEffect(() => {
-        Axios
-            .get(`https://bwchefportfolio.herokuapp.com/api/users/post${id}`)
-            .then(res => {
-                setSinglePost(res.data);
-            })
-            .catch(err => {
-                console.error(err);
-            });
-        }, [id]);
-
-        if(!singlePost) {
-            return <div>Loading Post info...</div>
-        }
-
-    const { imgURL, title, yield, serving, total_time, cook_time} = singlePost;
-
-    return (
-        <div>
-            <h4>{title}</h4>
-            <p>{yield}</p>
-            <p>{serving}</p>
-            <p>{total_time}</p>
-            <p>{cook_time}</p>
-        </div>
-    )
+  if (!props.post.post) {
+    return <p>Loading</p>;
+  }
+  return (
+    <div>
+      <img src={props.post.post.imgURL} />
+      <h4>{props.post.post.title}</h4>
+      <p>{props.post.post.yield}</p>
+      <p>{props.post.post.serving}</p>
+      <p>{props.post.post.total_time}</p>
+      <p>{props.post.post.cook_time}</p>
+    </div>
+  );
 }
+
+export default connect(
+  state => state,
+  actionCreators
+)(SinglePost);

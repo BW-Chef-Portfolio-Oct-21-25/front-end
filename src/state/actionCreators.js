@@ -53,3 +53,7 @@ export const getAllChefs = () => dispatch => {
 export const newPost = (post) => {
   return {type: types.ADD_POST, payload: post }
 }
+
+export const setSinglePost = (post) => {
+  return { type: types.SET_POST, payload: post}
+}

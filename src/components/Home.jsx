@@ -1,9 +1,9 @@
-
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import * as actions from "../state/actionCreators";
-import SinglePost from "./Post";
+import Post from "./Post";
+import SinglePost from './SinglePost';
 
 export function Home(props) {
   const { getPosts, isFetching } = props;
@@ -17,22 +17,10 @@ export function Home(props) {
       <ul className="posts-list-container">
         {posts.map(post => (
           <Link to={`post/${post.id}`} key={post.id}>
-            <SinglePost key={post.id} post={post} />
+            <Post key={post.id} post={post} />
           </Link>
         ))}
       </ul>
-      <main>
-        <Route
-          exact
-          path="/post/:postId"
-          render={props => {
-            const { id } = props.match.params;
-            console.log(id);
-            const user = posts.find(usr => usr.id == id);
-            console.log(user);
-          }}
-        />
-      </main>
     </div>
   );
 }
