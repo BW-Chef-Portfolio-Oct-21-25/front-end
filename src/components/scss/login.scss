@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
 }
-.container{
+.login-container{
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -56,4 +56,21 @@
     border-radius: 1rem;
     color: #fff;
     background-color: #c19434;
+    margin-top: 3rem;
 }
+
+.login-button:hover{
+    border: 1px solid #c19434;
+    background-color: #fff;
+    color: #c19434;
+}
+
+.login-container a{
+    text-decoration: none;
+    color: #c19434;
+}
+
+.login-container a:hover{
+    text-decoration: underline;
+}
+
