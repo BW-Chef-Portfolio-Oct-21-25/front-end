@@ -36,6 +36,7 @@ export function CreatePost(props) {
         oven_temperature: oven_temp.current.value,
         yield: yieldRef.current.value,
         chef_id: chef_id,
+        imgURL: imgURL
       })
       .then(res => {
         // actionCreators.newPost(res.data.post);
@@ -46,15 +47,6 @@ export function CreatePost(props) {
       });
   }
 
-  const upload = e => {
-    e.preventDefault();
-    dataURI.encodeFromFile(imgURL.current.value)
-    .then(res=> console.log(res))
-    // console.log(image)
-    // axios.post('https://api.cloudinary.com/v1_1/lambda-meg/image/upload', image)
-    // .then(res=> {console.log(res)})
-    // .catch(err => console.log(err))
-  }
 
   return (
       <div className='create_post'>
@@ -62,9 +54,9 @@ export function CreatePost(props) {
         <h1>Create New Recipe</h1>
         <input name="title" placeholder="Title" ref={title} />
         <input name="chef" placeholder="Chef" ref={chef} />
-        {/* <input type='file' ref={imgURL}/> */}
-        <input name="file" placeholder="Image URL" ref={imgURL} type='file'/>
-        <button onClick={upload}>Upload</button>
+        {/* <input type='file' ref={imgURL} name='test'/>
+        <button onClick={upload}>Upload</button> */}
+        <input name='image' placeholder="Image URL" ref={imgURL}/>
         <input name="description" placeholder="Description" ref={description} />
         <select ref={mealType}>
           <option>Breakfast</option>
