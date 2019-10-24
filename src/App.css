@@ -10,7 +10,7 @@
 }
 
 .App-link {
-  color: #09d3ac;
+  color: #cdddb5;
 }
 
 .navbar {
@@ -34,11 +34,11 @@
 }
 
 .red {
-  color: #ff0033;
+  color: #c19434;
 }
 
 .green {
-  color: #09d3ac;
+  color: #cdddb5;
 }
 .right-nav {
   width: 50%;
@@ -57,7 +57,7 @@
 }
 
 .right-nav a:hover {
-  border-bottom: 1px solid #ff0033;
+  border-bottom: 1px solid #cdddb5;
 }
 
 .post-main-container {
@@ -107,7 +107,7 @@
   flex-direction: column;
   margin-right: 15px;
   border-radius: 10%;
-  box-shadow: 5px 5px 5px 5px #09d3ac;
+  box-shadow: 5px 5px 5px 5px #cdddb5;
 }
 
 .img-container {
