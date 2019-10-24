@@ -4,7 +4,7 @@ import axiosWithAuth from '../axiosWithAuth';
 import * as actionCreators from "../state/actionCreators";
 import * as dataURI from 'image-data-uri';
 
-export function CreatePost(props) {
+export function CreatePost(newPost) {
   const imgURL = useRef();
   const title = useRef();
   const chef = useRef();
@@ -36,14 +36,15 @@ export function CreatePost(props) {
         oven_temperature: oven_temp.current.value,
         yield: yieldRef.current.value,
         chef_id: chef_id,
-        imgURL: imgURL
+        imgURL: imgURL.current.value
       })
       .then(res => {
-        // actionCreators.newPost(res.data.post);
-        props.history.push("/portfolio");
+        newPost(res.data.post);
+        // props.history.push("/portfolio");
+        console.log(res)
       })
       .catch(err => {
-        alert(err.response.data.message);
+        alert(err);
       });
   }
 

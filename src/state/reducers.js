@@ -18,7 +18,7 @@ const initialState = {
 export function postReducer(state = initialState, action){
     switch(action.type){
         case types.ADD_POST: 
-        return {...state, posts: [...initialState.posts, action.payload]}
+        return {...state, posts: [...state, action.payload]}
 
         case types.GET_POSTS: 
         return {

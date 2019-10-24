@@ -5,18 +5,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import * as reducers from './state/reducers';
-// import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 
 const monsterReducer = combineReducers({
-
     posts: reducers.postReducer,
     // chefs: reducers.chefReducer,
-
     post: reducers.postReducer,
-    posts: reducers.postReducer
-
   });
   
   const store = createStore(

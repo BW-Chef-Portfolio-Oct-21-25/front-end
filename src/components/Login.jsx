@@ -20,13 +20,11 @@ export function Login(props) {
         email: emailRef.current.value,
       })
       .then(res => {
-       console.log(res)
-       props.history.push('/portfolio')
        localStorage.setItem('token', res.data.token)
        localStorage.setItem('userID', res.data.id);
+       props.history.push('/portfolio')
       })
       .catch(error => {
-          console.log(error)
           alert('Invalid credentials, please check again or sign up for an account')
       });
   }

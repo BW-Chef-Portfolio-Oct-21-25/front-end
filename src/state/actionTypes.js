@@ -25,5 +25,3 @@ export const GET_CHEFS_SUCCESS = 'GET_CHEFS_SUCCESS';
 export const GET_CHEFS_FAILURE = 'GET_CHEFS_FAILURE';
 
 
-
-

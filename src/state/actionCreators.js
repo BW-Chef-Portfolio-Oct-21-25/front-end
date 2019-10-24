@@ -50,3 +50,6 @@ export const getAllChefs = () => dispatch => {
     );
 };
 
+export const newPost = (post) => {
+  return {type: types.ADD_POST, payload: post }
+}
