@@ -10,6 +10,9 @@ import ChefPortfolio from "./ChefPortfolio";
 // import { ChefList } from './chefs/ChefList'
 import * as actionCreators from '../state/actionCreators';
 import UpdateItem from './updatePortfolio';
+import ChefList from './chefs/ChefList';
+import Chef from './chefs/Chef';
+import SingleChef from "./chefs/SingleChef";
 
 const PrivateRoute = (Component, props) => {
   return localStorage.getItem("token") ? (
@@ -23,6 +26,7 @@ export function Navbar(props) {
   const logout = e => {
     localStorage.removeItem("token");
     localStorage.removeItem("userID");
+    console.log(props)
   };
   return (
     <div>
@@ -85,7 +89,8 @@ export function Navbar(props) {
         <Route  path = "/success" component = {Success}/>
         <Route path = '/updateitem/:id' render = {props => {
           return <UpdateItem {...props} />}}/>
-
+         <Route exact path="/chefs" component={ChefList}/> 
+         <Route exact path="/chef/:id" component={SingleChef}/> 
       </main>
     </div>
   );
