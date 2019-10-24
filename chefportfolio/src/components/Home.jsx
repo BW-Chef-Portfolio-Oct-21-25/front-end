@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import * as actions from '../state/actionCreators';
 import Post from './Post';
 
-// export function Home({posts, getPosts, isFetching }) {
     export function Home(props) {
     const { getPosts, isFetching } = props;
     const { posts } = props;

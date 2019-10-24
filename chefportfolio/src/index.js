@@ -23,7 +23,6 @@ const monsterReducer = combineReducers({
     )
   );
   
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

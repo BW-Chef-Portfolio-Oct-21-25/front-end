@@ -5,9 +5,11 @@ import * as actions from '../../state/actionCreators';
 import Chef from './Chef';
 
 export function ChefList(props) {
+    console.log(props);
     const { getAllChefs } = props;
     const { isFetching } = props.chefs
     const { chefs } = props.chefs.chefs;
+    console.log(chefs);
     useEffect(() => {
         getAllChefs();
     }, []);

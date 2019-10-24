@@ -1,14 +1,23 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
-import Home from "./Home";
+import { connect } from 'react-redux';
+import { Link, Route, Redirect } from "react-router-dom";
+
 import { CreatePost } from './CreatePost';
+import { Home } from "./Home";
 import { Login } from './Login';
 import SignUp from './SignUp';
 import { ChefList } from './chefs/ChefList'
-import SinglePost from './SinglePost';
-import SingleChef from './chefs/SingleChef';
+import  Success  from './sucess';
+import { ChefPortfolio } from './ChefPortfolio';  
 
-export default function Navbar(props) {
+const PrivateRoute = (Component, props) => {
+    return localStorage.getItem('token') ? (<Component {...props}/>) : (<Redirect to='/'/>)
+}
+
+export function Navbar(props) {
+  const logout = () => {
+    localStorage.removeItem('token');
+  }
   return (
     <div>
       <nav className="navbar">
@@ -21,9 +30,20 @@ export default function Navbar(props) {
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/chefs">Chefs</Link>
+          <Link to = "/success">Sucess</Link>
+          <Link to = "/portfolio">Portfolio</Link>
         </div>
       </nav>
-      
+      <main>
+        <Route exact path="/" component={Home} />
+        <Route  path="/createpost" component={CreatePost} />
+        <Route  path="/login" component={Login} />
+        <Route  path="/signup" component={SignUp} />
+        <Route  path = "/success" component = {Success}/>
+        <Route path = 'portfolio' component = {ChefPortfolio}/>
+        <Route exact path="" component={ChefList}/>
+      </main>
     </div>
   );
 }
+export default connect(state=>state, {})(Navbar);
