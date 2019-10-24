@@ -19,6 +19,7 @@ export function CreatePost(props) {
   const oven_temp = useRef();
   const yieldRef = useRef();
   const chef_id = localStorage.getItem('userID');
+  
 
   function createPost(e) {
     e.preventDefault();
@@ -40,8 +41,7 @@ export function CreatePost(props) {
       .then(res => {
         // actionCreators.newPost(res.data.post);
         console.log(res.data);
-        alert("success");
-        props.history.push("/");
+        props.history.push("/portfolio");
       })
       .catch(err => {
         alert(err.response.data.message);

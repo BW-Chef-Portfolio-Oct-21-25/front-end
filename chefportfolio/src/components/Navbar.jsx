@@ -8,7 +8,8 @@ import SignUp from "./SignUp";
 import Success from "./sucess";
 import ChefPortfolio from "./ChefPortfolio";
 // import { ChefList } from './chefs/ChefList'
-import * as actionCreators from "../state/actionCreators";
+import * as actionCreators from '../state/actionCreators';
+import UpdateItem from './updatePortfolio';
 
 const PrivateRoute = (Component, props) => {
   return localStorage.getItem("token") ? (
@@ -81,8 +82,11 @@ export function Navbar(props) {
         />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
-        {/* <Route exact path="" component={ChefList}/> */}
-        <Route exact path="/success" component={Success} />
+        <Route  path = "/success" component = {Success}/>
+        <Route path = '/portfolio' component = {ChefPortfolio} exact/>
+        <Route path = '/updateitem/:id' render = {props => {
+          return <UpdateItem {...props} />}}/>
+
       </main>
     </div>
   );
