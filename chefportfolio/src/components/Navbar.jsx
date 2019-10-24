@@ -83,7 +83,6 @@ export function Navbar(props) {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route  path = "/success" component = {Success}/>
-        <Route path = '/portfolio' component = {ChefPortfolio} exact/>
         <Route path = '/updateitem/:id' render = {props => {
           return <UpdateItem {...props} />}}/>
 

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import axiosWithAuth from '../axiosWithAuth';
 import * as actionCreators from "../state/actionCreators";
 import * as dataURI from 'image-data-uri';
-import axios from 'axios';
 
 export function CreatePost(props) {
   const imgURL = useRef();
@@ -40,7 +39,6 @@ export function CreatePost(props) {
       })
       .then(res => {
         // actionCreators.newPost(res.data.post);
-        console.log(res.data);
         props.history.push("/portfolio");
       })
       .catch(err => {
