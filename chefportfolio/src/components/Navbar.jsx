@@ -1,23 +1,27 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { Link, Route, Redirect } from "react-router-dom";
-
 import { CreatePost } from './CreatePost';
 import { Home } from "./Home";
 import { Login } from './Login';
 import SignUp from './SignUp';
 import { ChefList } from './chefs/ChefList'
 import  Success  from './sucess';
-import { ChefPortfolio } from './ChefPortfolio';  
+import ChefPortfolio from './ChefPortfolio';  
+// import { ChefList } from './chefs/ChefList'
+import * as actionCreators from '../state/actionCreators';
+import { UpdateItem } from './updatePortfolio'
 
 const PrivateRoute = (Component, props) => {
     return localStorage.getItem('token') ? (<Component {...props}/>) : (<Redirect to='/'/>)
 }
 
 export function Navbar(props) {
+
   const logout = () => {
     localStorage.removeItem('token');
   }
+
   return (
     <div>
       <nav className="navbar">
@@ -31,19 +35,26 @@ export function Navbar(props) {
           <Link to="/signup">Sign Up</Link>
           <Link to="/chefs">Chefs</Link>
           <Link to = "/success">Sucess</Link>
+
+          {/* <Link to="/chefs">Chefs</Link> */}
+
           <Link to = "/portfolio">Portfolio</Link>
         </div>
       </nav>
       <main>
         <Route exact path="/" component={Home} />
-        <Route  path="/createpost" component={CreatePost} />
-        <Route  path="/login" component={Login} />
-        <Route  path="/signup" component={SignUp} />
+        <Route exact path="/createpost" component={CreatePost} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="" component={ChefList}/> 
         <Route  path = "/success" component = {Success}/>
-        <Route path = 'portfolio' component = {ChefPortfolio}/>
-        <Route exact path="" component={ChefList}/>
+        <Route path = '/portfolio' component = {ChefPortfolio} exact/>
+        <Route path = '/updatepost/:id' render = {props => {
+          return <UpdateItem {...props} />
+        }
+        }/>
       </main>
     </div>
   );
 }
-export default connect(state=>state, {})(Navbar);
+export default connect(state=>state, actionCreators)(Navbar);

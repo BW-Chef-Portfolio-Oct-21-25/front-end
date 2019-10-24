@@ -1,3 +1,4 @@
+
 import Axios from 'axios';
 import * as types from './actionTypes';
 
@@ -11,14 +12,18 @@ export const newPost = (post) => {
   };
 }
 // Get all Posts
+import Axios from "axios";
+import * as types from "./actionTypes";
+
+Axios.defaults.baseURL = "https://bwchefportfolio.herokuapp.com/api/users";
+
 export const getPosts = () => dispatch => {
-  Axios
-    .get('/post')
+  Axios.get("/post")
     .then(res => {
       dispatch({
         type: types.GET_POSTS_SUCCESS,
         payload: res.data.posts
-      })
+      });
     })
     .catch(err =>
       dispatch({
@@ -37,8 +42,16 @@ export const getAllChefs = () => dispatch => {
       //   type: types.GET_CHEFS_SUCCESS,
       //   payload: res.data
       // })
+    );
+};
+
+export const getSinglePost = props => dispatch => {
+  const id = props.match.params.id;
+  Axios.get(`https://bwchefportfolio.herokuapp.com/api/users/post${id}`)
+    .then(res => {
+      console.log(res);
     })
-    .catch(err => 
+    .catch(err =>
       dispatch({
         type: types.GET_CHEFS_FAILURE,
         payload: err.message
@@ -93,3 +106,24 @@ export const addUser = user => dispatch =>{
 //     });
 // };
 
+        type: types.GET_SINGLE_POST_FAILURE,
+        payload: err.message
+      })
+    );
+};
+
+export const getAllChefs = () => dispatch => {
+  Axios.get("/chef")
+    .then(res => {
+      dispatch({
+        type: types.GET_CHEFS_SUCCESS,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: types.GET_CHEFS_FAILURE,
+        payload: err.message
+      })
+    );
+};
