@@ -23,6 +23,7 @@ export function Navbar(props) {
   const logout = e => {
     localStorage.removeItem("token");
     localStorage.removeItem("userID");
+    console.log(props)
   };
   return (
     <div>

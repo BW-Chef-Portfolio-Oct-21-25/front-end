@@ -128,36 +128,3 @@
   color: #fff;
 }
 
-.create_post {
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-}
-
-.create_post form {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  background-color: #e9efee;
-  margin-bottom: 2rem;
-}
-
-.create_post h1 {
-  color: grey;
-}
-
-.create_post button {
-  background-color: #ff4b6f;
-  font-size: 1rem;
-  color: whitesmoke;
-  border: none;
-}
-.create_post form input,
-textarea,
-button,
-select {
-  margin: 1rem;
-  border: 1px solid #dcdcdc;
-  border-radius: 6px;
-  padding: 0.5rem;
-}

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import axiosWithAuth from '../axiosWithAuth';
 import * as actionCreators from "../state/actionCreators";
 import * as dataURI from 'image-data-uri';
+import './scss/createpost.scss';
 
 export function CreatePost(newPost) {
   const imgURL = useRef();
