@@ -17,12 +17,12 @@ export const UpdateItem = props => {
   const yieldRef = useRef();
   const chef_id = localStorage.getItem("userID");
   const recipeID = props.match.params.id;
-  
+  const recipe = props.posts.posts.filter(post => post.id === parseInt(recipeID))
   const updatePost = e => {
-      e.preventDefault();
-      axiosWithAuth()
+    e.preventDefault();
+    axiosWithAuth()
       .put(`https://bwchefportfolio.herokuapp.com/api/users/post/${recipeID}`, {
-          title: title.current.value,
+        title: title.current.value,
         chef: chef.current.value,
         meal_type: mealType.current.value,
         ingredient: ingredient.current.value,
@@ -34,30 +34,24 @@ export const UpdateItem = props => {
         oven_temperature: oven_temp.current.value,
         yield: yieldRef.current.value,
         chef_id: chef_id
-    })
-    .then(res => {
+      })
+      .then(res => {
         alert(res.data.message);
         props.history.push("/portfolio");
-    })
-    .catch(err =>
+      })
+      .catch(err =>
         alert(
-            "Something went wrong. Please make sure you have filled in all required fields."
-            )
-            );
-        };
-        
-        const currentRecipe = props.posts.posts.filter(recipe => {return recipe.id === recipeID})
+          "Something went wrong. Please make sure you have filled in all required fields."
+        )
+      );
+  };
   return (
     <div className="create_post">
-      {console.log(currentRecipe)}
-      {console.log(recipeID)}
+      {console.log(recipe)}
       <form>
         <h1>Update Recipe</h1>
-        <input name="title" placeholder="Title" ref={title} />
-        <input name="chef" placeholder="Chef" ref={chef} />
-        {/* <input type='file' ref={imgURL}/> */}
-        {/* <input name="file" placeholder="Image URL" ref={imgURL} type='file'/> */}
-        {/* <button onClick={upload}>Upload</button> */}
+        <input name="title" placeholder="Title" ref={title} value={recipe.title}/>
+        <input name="chef" placeholder="Chef" ref={chef} value={recipe.chef}/>
         <input name="description" placeholder="Description" ref={description} />
         <select ref={mealType}>
           <option>Breakfast</option>
