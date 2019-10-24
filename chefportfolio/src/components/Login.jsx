@@ -27,6 +27,7 @@ export function Login(props) {
       })
       .catch(error => {
           console.log(error)
+          alert('Invalid credentials, please check again or sign up for an account')
       });
   }
 

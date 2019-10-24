@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as actionCreators from '../state/actionCreators';
 import { connect } from 'react-redux';
 import getPosts from '../state/actionCreators'
 import {Link} from 'react-router-dom';
 import SinglePost from './Post';
+import axiosWithAuth from '../axiosWithAuth/index'
+
 
 class ChefPortfolio extends React.Component {
     componentDidMount(){
         this.props.getPosts()
     }
+
+ 
 
     render(){
 
@@ -29,16 +33,24 @@ class ChefPortfolio extends React.Component {
                     <div>
                         {
                             chefRecipes.map((post) => (
+                                <div>
                                 <Link to={`post/${post.id}`} key={post.id}>
                                     <SinglePost 
                                     key={post.id} post={post}                   
                                 />
                                 </Link>
+                                <Link to = {`/updateitem/${post.id}`}>Button</Link>
+                                </div>
                             ))
+
                         }
+                        
+
                     </div>
                 </div>
             )
+
+            
         }
 
         else{
@@ -47,6 +59,10 @@ class ChefPortfolio extends React.Component {
 
     }
 }
+
+
+
+
 
 const mapStateToProps = state => {
     return {
