@@ -1,67 +1,94 @@
-import React from "react";
-import Home from "./Home";
-import { connect } from 'react-redux';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { Link, Route, Redirect } from "react-router-dom";
-import { Login } from './Login';
-import { CreatePost } from './CreatePost';
-import { SignUp } from './SignUp';
-
+import Home from "./Home";
+import Login from "./Login";
+import CreatePost from "./CreatePost";
+import SignUp from "./SignUp";
+import Success from "./sucess";
+import ChefPortfolio from "./ChefPortfolio";
 // import { ChefList } from './chefs/ChefList'
-
-import  Success  from './sucess';
-import { ChefPortfolio } from './ChefPortfolio';  
+import * as actionCreators from '../state/actionCreators';
+import UpdateItem from './updatePortfolio';
 
 const PrivateRoute = (Component, props) => {
-    return localStorage.getItem('token') ? (<Component {...props}/>) : (<Redirect to='/'/>)
-}
-
-
+  return localStorage.getItem("token") ? (
+    <Component {...props} />
+  ) : (
+    <Redirect to="/login" />
+  );
+};
 
 export function Navbar(props) {
-    const logout = () => {
-        localStorage.removeItem('token');
-    }
+  const logout = e => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userID");
+  };
   return (
     <div>
-
       <nav className="navbar">
         <div className="left-nav">
-          <span className="red">Chef<span className="green">Diaries</span></span>
+          <span className="red">
+            Chef<span className="green">Diaries</span>
+          </span>
         </div>
+
         <div className="right-nav">
           <Link to="/">Home</Link>
-          <Link to="/createpost">Create Post</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          {/* <Link to="/chefs">Chefs</Link> */}
-
+          <Link to="/chefs">Chefs</Link>
+          <Link
+            to="/createpost"
+            style={!localStorage.getItem("token") ? { display: "none" } : null}
+          >
+            Create Post
+          </Link>
+          <Link
+            to="/portfolio"
+            style={!localStorage.getItem("token") ? { display: "none" } : null}
+          >
+            Portfolio
+          </Link>
+          <Link
+            to="/login"
+            style={localStorage.getItem("token") ? { display: "none" } : null}
+          >
+            Login
+          </Link>
+          <Link
+            to="/signup"
+            style={localStorage.getItem("token") ? { display: "none" } : null}
+          >
+            Sign Up
+          </Link>
+          <button
+            onClick={logout}
+            style={!localStorage.getItem("token") ? { display: "none" } : null}
+          >
+            Logout
+          </button>
         </div>
       </nav>
       <main>
         <Route exact path="/" component={Home} />
-        <Route exact path="/createpost" component={CreatePost} />
+        <Route
+          exact
+          path="/createpost"
+          render={props => PrivateRoute(CreatePost, props)}
+        />
+        <Route
+          exact
+          path="/portfolio"
+          render={props => PrivateRoute(ChefPortfolio, props)}
+        />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
-        {/* <Route exact path="" component={ChefList}/> */}
-        </main>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/createpost">Create Post</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
-        <Link to = "/success">Sucess</Link>
-        <Link to = "/portfolio">Portfolio</Link>
-      </nav>
-      <main>
-        <Route exact path="/" component={Home} />
-        <Route  path="/createpost" component={CreatePost} />
-        <Route  path="/login" component={Login} />
-        <Route  path="/signup" component={SignUp} />
         <Route  path = "/success" component = {Success}/>
-        <Route path = 'portfolio' component = {ChefPortfolio}/>
+        <Route path = '/updateitem/:id' render = {props => {
+          return <UpdateItem {...props} />}}/>
 
       </main>
     </div>
   );
 }
-export default connect(state=>state, {})(Navbar);
+
+export default connect(state => state, actionCreators)(Navbar);

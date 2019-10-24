@@ -1,10 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import axiosWithAuth from "../axiosWithAuth/index";
 import { connect } from "react-redux";
-import axiosWithAuth from '../axiosWithAuth';
-import * as actionCreators from "../state/actionCreators";
-import * as dataURI from 'image-data-uri';
 
-export function CreatePost(newPost) {
+export const UpdateItem = props => {
   const imgURL = useRef();
   const title = useRef();
   const chef = useRef();
@@ -17,13 +15,14 @@ export function CreatePost(newPost) {
   const total_time = useRef();
   const oven_temp = useRef();
   const yieldRef = useRef();
-  const chef_id = localStorage.getItem('userID');
-
-  function createPost(e) {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("https://bwchefportfolio.herokuapp.com/api/users/post", {
-        title: title.current.value,
+  const chef_id = localStorage.getItem("userID");
+  const recipeID = props.match.params.id;
+  
+  const updatePost = e => {
+      e.preventDefault();
+      axiosWithAuth()
+      .put(`https://bwchefportfolio.herokuapp.com/api/users/post/${recipeID}`, {
+          title: title.current.value,
         chef: chef.current.value,
         meal_type: mealType.current.value,
         ingredient: ingredient.current.value,
@@ -34,29 +33,31 @@ export function CreatePost(newPost) {
         cook_time: cook_time.current.value,
         oven_temperature: oven_temp.current.value,
         yield: yieldRef.current.value,
-        chef_id: chef_id,
-        imgURL: imgURL.current.value
-      })
-      .then(res => {
-        newPost(res.data.post);
-        // props.history.push("/portfolio");
-        console.log(res)
-      })
-      .catch(err => {
-        alert(err);
-      });
-  }
-
-
+        chef_id: chef_id
+    })
+    .then(res => {
+        alert(res.data.message);
+        props.history.push("/portfolio");
+    })
+    .catch(err =>
+        alert(
+            "Something went wrong. Please make sure you have filled in all required fields."
+            )
+            );
+        };
+        
+        const currentRecipe = props.posts.posts.filter(recipe => {return recipe.id === recipeID})
   return (
-      <div className='create_post'>
-        <form>
-        <h1>Create New Recipe</h1>
+    <div className="create_post">
+      {console.log(currentRecipe)}
+      {console.log(recipeID)}
+      <form>
+        <h1>Update Recipe</h1>
         <input name="title" placeholder="Title" ref={title} />
         <input name="chef" placeholder="Chef" ref={chef} />
-        {/* <input type='file' ref={imgURL} name='test'/>
-        <button onClick={upload}>Upload</button> */}
-        <input name='image' placeholder="Image URL" ref={imgURL}/>
+        {/* <input type='file' ref={imgURL}/> */}
+        {/* <input name="file" placeholder="Image URL" ref={imgURL} type='file'/> */}
+        {/* <button onClick={upload}>Upload</button> */}
         <input name="description" placeholder="Description" ref={description} />
         <select ref={mealType}>
           <option>Breakfast</option>
@@ -73,13 +74,19 @@ export function CreatePost(newPost) {
         <input name="prep_time" placeholder="Prep Time" ref={prep_time} />
         <input name="cook_time" placeholder="Cook Time" ref={cook_time} />
         <input name="total_time" placeholder="Total Time" ref={total_time} />
-        <input name="oven_temp" placeholder="Oven Temperature" ref={oven_temp} />
+        <input
+          name="oven_temp"
+          placeholder="Oven Temperature"
+          ref={oven_temp}
+        />
         <input name="yield" placeholder="Yield" ref={yieldRef} />
-        <button onClick={createPost}>Submit</button>
+        <button onClick={updatePost}>Submit</button>
       </form>
-
-      </div>
+    </div>
   );
-}
+};
 
-export default connect(state => state, actionCreators)(CreatePost);
+export default connect(
+  state => state,
+  {}
+)(UpdateItem);
