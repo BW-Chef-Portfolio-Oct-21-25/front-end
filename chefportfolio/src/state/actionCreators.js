@@ -25,10 +25,6 @@ export const getSinglePost = props => dispatch => {
   Axios.get(`https://bwchefportfolio.herokuapp.com/api/users/post${id}`)
     .then(res => {
       console.log(res);
-      // dispatch({
-      //   type: types.GET_SINGLE_POST_SUCCESS,
-      //   payload: res.data.posts.item
-      // })
     })
     .catch(err =>
       dispatch({
@@ -53,52 +49,3 @@ export const getAllChefs = () => dispatch => {
       })
     );
 };
-
-//Registration
-
-export const addUser = user => dispatch => {
-  dispatch({
-    type: types.SIGNUP_NEW
-  });
-  Axios.post("", {
-    email: user.email,
-    username: user.username,
-    password: user.password
-  })
-    .then(res => {
-      console.log(res.data);
-      dispatch({
-        type: types.SIGNUP_SUCCESS,
-        payload: res.data
-      });
-      return true;
-    })
-    .catch(error => {
-      console.log(error);
-      dispatch({
-        type: types.SIGNUP_FAILED,
-        payload: error.response
-      });
-    });
-};
-
-//log in
-
-// export const login = (username, password) => dispatch => {
-//   dispatch({ type: types.LOGIN_START });
-//   return withAuth()
-//     .post(`https://bwchefportfolio.herokuapp.com/api/users/login `, {
-//       username: username,
-//       password: password
-//     })
-//     .then(res => {
-//       dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
-//       return true;
-//     })
-//     .catch(res => {
-//       dispatch({
-//         type: types.LOGIN_FAILED,
-//         payload: res.data
-//       });
-//     });
-// };
