@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actions from '../../state/actionCreators';
 import Chef from './Chef';
+import '../scss/chefList.scss'
 
 export function ChefList(props) {
     console.log(props);

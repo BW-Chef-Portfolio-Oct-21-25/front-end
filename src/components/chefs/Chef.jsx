@@ -1,9 +1,10 @@
 import React from 'react';
+import '../scss/chef.scss'
 
 export default function Chef({chef}) {
     return (
         <div className="chef-container">
-            <div>
+            <div className = "chef">
                 <p>{chef.chef_type}</p>
                 <p>{chef.city}</p>
                 <p>{chef.first_name}</p>
