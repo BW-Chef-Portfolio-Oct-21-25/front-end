@@ -2,10 +2,9 @@ import React, { useRef } from "react";
 import { connect } from "react-redux";
 import axiosWithAuth from '../axiosWithAuth';
 import * as actionCreators from "../state/actionCreators";
-import * as dataURI from 'image-data-uri';
 import './scss/createpost.scss';
 
-export function CreatePost({newPost}) {
+export function CreatePost(props) {
   const imgURL = useRef();
   const title = useRef();
   const chef = useRef();
@@ -15,8 +14,8 @@ export function CreatePost({newPost}) {
   const description = useRef();
   const prep_time = useRef();
   const cook_time = useRef();
-  const total_time = useRef();
-  const oven_temp = useRef();
+  const total_time = useRef('');
+  const oven_temp = useRef('');
   const yieldRef = useRef();
   const chef_id = localStorage.getItem('userID');
 
@@ -39,12 +38,11 @@ export function CreatePost({newPost}) {
         imgURL: imgURL.current.value
       })
       .then(res => {
-        newPost(res.data.post);
-        // props.history.push("/portfolio");
-        console.log(res)
+        props.newPost(res.data.post);
+        props.history.push("/portfolio");
       })
       .catch(err => {
-        alert(err);
+        console.log(err);
       });
   }
 
@@ -55,8 +53,6 @@ export function CreatePost({newPost}) {
         <h1>Create New Recipe</h1>
         <input name="title" placeholder="Title" ref={title} />
         <input name="chef" placeholder="Chef" ref={chef} />
-        {/* <input type='file' ref={imgURL} name='test'/>
-        <button onClick={upload}>Upload</button> */}
         <input name='image' placeholder="Image URL" ref={imgURL}/>
         <input name="description" placeholder="Description" ref={description} />
         <select ref={mealType}>

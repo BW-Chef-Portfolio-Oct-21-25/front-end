@@ -3,21 +3,22 @@ import axiosWithAuth from "../axiosWithAuth/index";
 import { connect } from "react-redux";
 
 export const UpdateItem = props => {
-  const imgURL = useRef();
-  const title = useRef();
-  const chef = useRef();
-  const mealType = useRef();
-  const ingredient = useRef();
-  const directions = useRef();
-  const description = useRef();
-  const prep_time = useRef();
-  const cook_time = useRef();
-  const total_time = useRef();
-  const oven_temp = useRef();
-  const yieldRef = useRef();
-  const chef_id = localStorage.getItem("userID");
   const recipeID = props.match.params.id;
   const recipe = props.posts.posts.filter(post => post.id === parseInt(recipeID))
+  const imgURL = useRef();
+  const title = useRef(`${recipe[0].title}`);
+  const chef = useRef(`${recipe[0].chef}`);
+  const mealType = useRef(`${recipe[0].meal_type}`);
+  const ingredient = useRef(`${recipe[0].ingredient}`);
+  const directions = useRef(`${recipe[0].directions}`);
+  const description = useRef(`${recipe[0].description}`);
+  const prep_time = useRef(`${recipe[0].prep_time}`);
+  const cook_time = useRef(`${recipe[0].cook_time}`);
+  const total_time = useRef(`${recipe[0].total_time}`);
+  const oven_temp = useRef(`${recipe[0].oven_temperature}`);
+  const yieldRef = useRef(`${recipe[0].yield}`);
+  const chef_id = localStorage.getItem("userID");
+
   const updatePost = e => {
     e.preventDefault();
     axiosWithAuth()
@@ -50,30 +51,32 @@ export const UpdateItem = props => {
       {console.log(recipe)}
       <form>
         <h1>Update Recipe</h1>
-        <input name="title" placeholder="Title" ref={title} value={recipe.title}/>
-        <input name="chef" placeholder="Chef" ref={chef} value={recipe.chef}/>
-        <input name="description" placeholder="Description" ref={description} />
-        <select ref={mealType}>
+        <input name="title" ref={title} defaultValue={title.current}/>
+        <input name="chef" placeholder="Chef" ref={chef} defaultValue={chef.current}/>
+        <input name="description" placeholder="Description" ref={description} defaultValue={description.current}/>
+        <select ref={mealType} defaultValue={mealType.current}>
           <option>Breakfast</option>
           <option>Lunch</option>
           <option>Dinner</option>
           <option>Dessert</option>
         </select>
-        <input name="ingredient" placeholder="Ingredients" ref={ingredient} />
+        <input name="ingredient" placeholder="Ingredients" ref={ingredient} defaultValue={ingredient.current}/>
         <textarea
           name="directions"
           placeholder="Instructions"
           ref={directions}
+          defaultValue={directions.current}
         />
-        <input name="prep_time" placeholder="Prep Time" ref={prep_time} />
-        <input name="cook_time" placeholder="Cook Time" ref={cook_time} />
-        <input name="total_time" placeholder="Total Time" ref={total_time} />
+        <input name="prep_time" placeholder="Prep Time" ref={prep_time} defaultValue={prep_time.current}/>
+        <input name="cook_time" placeholder="Cook Time" ref={cook_time} defaultValue={cook_time.current}/>
+        <input name="total_time" placeholder="Total Time" ref={total_time} defaultValue={total_time.current}/>
         <input
           name="oven_temp"
           placeholder="Oven Temperature"
           ref={oven_temp}
+          defaultValue={oven_temp.current}
         />
-        <input name="yield" placeholder="Yield" ref={yieldRef} />
+        <input name="yield" placeholder="Yield" ref={yieldRef} defaultValue={yieldRef.current}/>
         <button onClick={updatePost}>Submit</button>
       </form>
     </div>
