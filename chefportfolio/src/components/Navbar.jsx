@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { connect } from 'react-redux';
 import { Link, Route, Redirect } from "react-router-dom";
 import Home from "./Home";
@@ -10,12 +10,38 @@ import ChefPortfolio from './ChefPortfolio';
 // import { ChefList } from './chefs/ChefList'
 import * as actionCreators from '../state/actionCreators';
 import { UpdateItem } from './updatePortfolio'
+import axios from 'axios'
 
 const PrivateRoute = (Component, props) => {
     return localStorage.getItem('token') ? (<Component {...props}/>) : (<Redirect to='/'/>)
 }
 
 export function Navbar(props) {
+
+  const [savedList, setSavedList] = useState([]);
+  const [posts, setPosts] = useState([]);
+
+  const addToSavedList = posts => {
+    setSavedList([...savedList, posts]);
+  };
+
+
+  const deletePost = (id) => (e) => {
+
+
+    axios.delete(`http://localhost:5000/api/movies/${id}`)
+      .then(({ data }) => {
+
+        setPosts(posts.filter(post => post.id !== data));
+        window.location.href = "/";
+      })
+      .catch(err => console.log(err));
+
+  }
+
+
+
+
   return (
     <div>
 
@@ -44,6 +70,12 @@ export function Navbar(props) {
           return <UpdateItem {...props} />
         }
         }/>
+        <Route
+        path="/portfolio/:id"
+        render={props => {
+          return <ChefPortfolio {...props} addToSavedList={addToSavedList} deletePost={deletePost} />;
+        }}
+      />
       </main>
     </div>
   );
