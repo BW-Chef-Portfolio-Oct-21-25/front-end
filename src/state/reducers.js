@@ -43,6 +43,9 @@ export function singlePostReducer(state = initialState.post, action){
 export function postReducer(state = initialState, action){
     switch(action.type){
 
+        case types.DELETE_POST: 
+        return { posts: state.posts.filter(post => post.id !== action.payload)}
+
         case types.ADD_POST: 
         return {posts: [...state.posts, action.payload]}
 
