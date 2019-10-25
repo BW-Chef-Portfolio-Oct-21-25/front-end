@@ -23,15 +23,14 @@ class ChefPortfolio extends React.Component {
     if (this.props.posts.length) {
       return (
         <div className = "portfolio-container">
-          <h1>Welcome!</h1>
-
+          <h1>Welcome to your portfolio!</h1>
           <div className = "post-container">
             {chefRecipes.map(post => (
               <div className = "link-container">
                 <Link to={`post/${post.id}`} key={post.id}>
                   <SinglePost key={post.id} post={post} />
                 </Link>
-                <button onClick={() => this.props.deleteRecipe(post.id)}>Delete Post</button>
+                <button className='delete-button' onClick={() => this.props.deleteRecipe(post.id)}>Delete Post</button>
                 <Link  className = "login-button" to={`/updateitem/${post.id}`}>Edit Post</Link>
               </div>
             ))}
