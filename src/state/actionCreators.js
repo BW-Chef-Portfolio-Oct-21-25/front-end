@@ -58,17 +58,14 @@ export const newPost = (post) => {
 export const setSinglePost = (post) => {
   return { type: types.SET_POST, payload: post}
 }
-
-
-
 export const deleteRecipe = (id) => dispatch => {
-  axiosWithAuth().delete(`https://bwchefportfolio.herokuapp.com/api/users/post/${id}`)
-  .then(res => {
-    console.log(res)
-    dispatch({
-      type: types.DELETE_POST,
-      payload: id
-    })
-  })
-  .catch(err => console.log(err))
+  // const item = localStorage.getItem(`newPost${id}`)
+ axiosWithAuth().delete(`https://bwchefportfolio.herokuapp.com/api/users/post/${id}`)
+ .then(res => {
+   dispatch({
+     type: types.DELETE_POST,
+     payload: id
+   })
+ })
+ .catch(err => console.log(err))
 }
