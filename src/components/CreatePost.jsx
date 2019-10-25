@@ -42,7 +42,7 @@ export function CreatePost(props) {
         props.history.push("/portfolio");
       })
       .catch(err => {
-        console.log(err);
+        alert('Please make sure you fill in all the required fields');
       });
   }
 
@@ -50,22 +50,24 @@ export function CreatePost(props) {
   return (
       <div className='create_post'>
         <form>
-        <h1>Create New Recipe</h1>
-        <input name="title" placeholder="Title" ref={title} />
+        <h1>Create New Recipe<span>* fill all the required fields</span> </h1>
+        {/* <span>*</span> */}
+        <input name="title" placeholder="Title" ref={title} required/>
         <input name="chef" placeholder="Chef" ref={chef} />
         <input name='image' placeholder="Image URL" ref={imgURL}/>
-        <input name="description" placeholder="Description" ref={description} />
-        <select ref={mealType}>
+        <input name="description" placeholder="Description" ref={description} required/>
+        <select ref={mealType} required>
           <option>Breakfast</option>
           <option>Lunch</option>
           <option>Dinner</option>
           <option>Dessert</option>
         </select>
-        <input name="ingredient" placeholder="Ingredients" ref={ingredient} />
+        <input name="ingredient" placeholder="Ingredients" ref={ingredient} required/>
         <textarea
           name="directions"
           placeholder="Instructions"
           ref={directions}
+          required
         />
         <input name="prep_time" placeholder="Prep Time" ref={prep_time} />
         <input name="cook_time" placeholder="Cook Time" ref={cook_time} />
