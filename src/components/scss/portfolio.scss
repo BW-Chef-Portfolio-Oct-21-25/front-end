@@ -19,17 +19,16 @@
   font-size: 1.1rem;
 }
 
-.link-container {
-  width: 25%;
-  margin: 3rem;
+.link-container{
+  width: 30%;
 }
 
-@media (max-width: 900px) {
-  .link-container {
-    width: 40%;
-    margin: 3rem auto;
-  }
+@media(max-width:900px){
+    .link-container{
+        margin: 3rem auto;
+    }  
 }
+
 
 @media (max-width: 600px) {
   .link-container {
