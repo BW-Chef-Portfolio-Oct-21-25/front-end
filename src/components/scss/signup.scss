@@ -3,35 +3,8 @@
 }
 
 
-.cicle-one{
-    height: 50%;
-    width: 50%;
-    margin-top: 10%;
-    margin-left: 20%;
-    border-radius: 50%;
-    background-color: #c4c4c4;
-}
-
-.cicle-two{
-    border: 1px solid #c4c4c4;
-    height: 50%;
-    width: 50%;
-    margin-top: -20%;
-    margin-left: 35%;
-    border-radius: 50%;
-    
-}
-
-.cicle-two img{
-    padding: 1rem;
-    width: 90%;
-    height: 90%;
-    margin: 5% auto;
-}
 
 .signup-container{
-
-    height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -43,20 +16,19 @@
 
 .signup-form{
     width: 40%;
+    height: 70%;
     margin: 2rem;
-    border: 1px solid red;
+    border: 1px solid #c19434;
     border-radius: 5rem;
 }
 
-.image{
+.signup-image{
     width: 50%;
-    margin: 2rem;
-    padding: 1rem;
 }
 
 img{
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
 }
 
 
@@ -68,4 +40,27 @@ img{
     display: block;
     width: 80%;
     margin: 2rem auto;
+}
+
+.signup-container a{
+    text-decoration: none;
+    color: #c19434;
+}
+
+.signup-container a:hover{
+    text-decoration: underline;
+}
+
+@media (max-width: 800px)
+{
+    .signup-form{
+        width: 80%;
+        height: 70%;
+        margin: 2rem;
+        
+    }
+
+    .signup-image{
+        display: none;
+    }
 }

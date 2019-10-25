@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+}
+
+.post-container{
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+
+
+.link-container{
+    width: 25%;
+    margin: 3rem;
+}
+
+@media(max-width:900px){
+    .link-container{
+        width: 40%;
+        margin: 3rem auto;
+    }  
+}
+
+@media(max-width:600px){
+    .link-container{
+        width: 70%;
+        margin: 3rem auto;
+    }  
+}
+
+
+
+.portfolio-container .login-button{
+    padding: 0.5rem 1.5rem ;
+}
+
+.portfolio-container a{
+    text-decoration: none;
+}

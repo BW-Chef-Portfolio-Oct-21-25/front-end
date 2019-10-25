@@ -1,3 +1,8 @@
+*{
+  box-sizing: border-box;
+}
+
+
 .App {
   text-align: center;
   background: #f8f8f8;
@@ -10,23 +15,31 @@
 }
 
 .App-link {
-  color: #09d3ac;
+  color: #cdddb5;
 }
 
 .navbar {
   border-bottom: 1px solid #eee;
   width: 100%;
   min-height: 80px;
-  margin-bottom: 50px;
   max-width: 100%;
   box-shadow: 2px 2px #eee;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  
   border-bottom: 1px solid grey;
 
 }
+
+@media(max-width:600px){
+  .navbar{
+      flex-direction: column;
+      width: 100%;
+  }  
+}
+
+
 
 .left-nav {
   margin-left: 45px;
@@ -35,18 +48,37 @@
 }
 
 .red {
-  color: #ff0033;
+  color: #c19434;
 }
 
 .green {
-  color: #09d3ac;
+  color: #cdddb5;
 }
 .right-nav {
-  width: 50%;
+  width: 70%;
   margin-right: 15px;
   float: right;
-  max-width: 50%;
+  /* max-width: 50%; */
   /* padding-top: 20px; */
+}
+
+
+
+@media(max-width:500px){
+  .right-nav{
+    width: 100%;
+  }
+  
+  .right-nav a{
+    padding: 0;
+    float: none;
+  }
+
+  .left-nav{
+    width: 100%;
+    border-color: #c19434;
+    margin-left: 0;
+}  
 }
 
 .right-nav a {
@@ -54,11 +86,18 @@
   text-decoration: none;
   color: #101010;
   font-size: 16px;
-  padding: 14px 16px;
+  padding: 1rem;
+}
+
+@media(max-width:600px){
+  
+  .right-nav a{
+    padding: 0.5rem;
+  }
 }
 
 .right-nav a:hover {
-  border-bottom: 1px solid #ff0033;
+  border-bottom: 1px solid #cdddb5;
 }
 
 .post-main-container {
@@ -71,7 +110,7 @@
 
 .posts-list-container {
   width: 80%;
-  margin: auto;
+  margin: 5% auto;
   height: auto;
   flex-wrap: wrap;
   display: flex;
@@ -84,36 +123,55 @@
   margin: 1rem;
 }
 
+@media(max-width:900px){
+  .posts-list-container a {
+      width: 40%;
+      margin: 3rem auto;
+  }  
+}
+
+@media(max-width:600px){
+  .posts-list-container a {
+      width: 70%;
+      margin: 3rem auto;
+  }  
+}
+
 .list-card {
-  width: 100%;
   border-radius: 7px;
   background: #fff;
-  border: 1px solid #eee;
   height: auto;
   max-height: auto;
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   margin-right: 15px;
+  border-radius: 10%;
+  box-shadow: 5px 5px 5px 5px #cdddb5;
 }
 
 .img-container {
   width: 100%;
   max-width: 100%;
   height: 150px;
+  border-radius: 10%;
+  border: 1px solid #fff;
 }
 
 .img-container img {
   width: 100%;
   max-height: 100%;
+  border-radius: 15% 15% 0 0;
+  border: 1px solid #fff;
 }
 
 .post-info-container {
   width: 100%;
   max-width: 100%;
   height: auto;
-  background: #ff0033;
+  background: #c19434;
   text-align: left;
+  border-radius:0 0 10% 10%;
 }
 
 .title {

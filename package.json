@@ -5,10 +5,8 @@
   "dependencies": {
     "axios": "^0.19.0",
     "formik": "^1.5.8",
-
     "image-data-uri": "^2.0.1",
     "node-sass": "^4.13.0",
-
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-redux": "^7.1.1",
@@ -17,9 +15,7 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-
     "styled-components": "^4.4.0",
-
     "yup": "^0.27.0"
   },
   "scripts": {
