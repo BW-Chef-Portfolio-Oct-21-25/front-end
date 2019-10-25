@@ -30,7 +30,7 @@ export function Login(props) {
   }
 
   return (
-      <div className = "container">
+      <div className = "login-container">
         <div className = "top-design"></div>
         <div className ="login-form">
             <h1>Log In</h1>

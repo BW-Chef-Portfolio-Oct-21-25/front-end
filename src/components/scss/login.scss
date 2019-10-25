@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
 }
-.container{
+.login-container{
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -11,7 +11,7 @@
 }
 
 .top-design{
-    background-color:  #c4c4c4;
+    background-color:  #c19434;
     grid-row-start: 1;
     grid-row-end: 1;
     grid-column-start: 1;
@@ -20,7 +20,7 @@
 
 .login-form{
     background-color: #fff; 
-    border: 1px solid #c4c4c4;
+    border: 1px solid #c19434;
     border-radius: 5%;
     grid-row-start: 1;
     grid-row-end: 4;
@@ -40,7 +40,7 @@
     margin: 2rem 2rem;
     margin-bottom: 1rem;
     padding: 0.5rem 0;
-    border: 1px solid #c4c4c4;
+    border: 1px solid #c19434;
     
 }
 
@@ -55,5 +55,22 @@
     padding: 1rem 2rem ;
     border-radius: 1rem;
     color: #fff;
-    background-color: #c4c4c4;
+    background-color: #c19434;
+    margin-top: 3rem;
 }
+
+.login-button:hover{
+    border: 1px solid #c19434;
+    background-color: #fff;
+    color: #c19434;
+}
+
+.login-container a{
+    text-decoration: none;
+    color: #c19434;
+}
+
+.login-container a:hover{
+    text-decoration: underline;
+}
+

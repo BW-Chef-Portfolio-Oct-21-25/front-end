@@ -64,12 +64,14 @@ export function Navbar(props) {
           >
             Sign Up
           </Link>
-          <button
-            onClick={logout}
-            style={!localStorage.getItem("token") ? { display: "none" } : null}
-          >
-            Logout
+          <Link exact to = "/">
+            <button
+              onClick={logout}
+              style={!localStorage.getItem("token") ? { display: "none" } : null}
+            >
+              Logout
           </button>
+          </Link>
         </div>
       </nav>
       <main>

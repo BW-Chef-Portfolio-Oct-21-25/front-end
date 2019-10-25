@@ -5,6 +5,7 @@ import getPosts from "../state/actionCreators";
 import { Link } from "react-router-dom";
 import SinglePost from "./Post";
 import axiosWithAuth from "../axiosWithAuth/index";
+import './scss/portfolio.scss'
 
 
 class ChefPortfolio extends React.Component {
@@ -21,17 +22,17 @@ class ChefPortfolio extends React.Component {
 
     if (this.props.posts.length) {
       return (
-        <div>
+        <div className = "portfolio-container">
           <h1>Welcome!</h1>
 
-          <div>
+          <div className = "post-container">
             {chefRecipes.map(post => (
-              <div>
+              <div className = "link-container">
                 <Link to={`post/${post.id}`} key={post.id}>
                   <SinglePost key={post.id} post={post} />
                 </Link>
-                <Link to={`/updateitem/${post.id}`}>Update</Link>
                 <button onClick={() => this.props.deleteRecipe(post.id)}>Delete Post</button>
+                <Link  className = "login-button" to={`/updateitem/${post.id}`}>Edit Post</Link>
               </div>
             ))}
           </div>

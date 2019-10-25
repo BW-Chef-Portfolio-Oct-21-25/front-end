@@ -2,7 +2,9 @@ import React, { useRef } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import * as actionCreators from '../state/actionCreators';
+import { Link } from 'react-router-dom';
 import './scss/signup.scss'
+
 
 export function SignUp(props) {
   const usernameRef = useRef();
@@ -31,11 +33,8 @@ export function SignUp(props) {
       <div className = 'signup-container'>
         <h1>Chef Portfolio</h1>
         <div className = "signup">
-        <div className = "image">
-          <div className = "cicle-one"></div>
-          <div className = "cicle-two">
-            <img src="https://cdn2.iconfinder.com/data/icons/school-34/100/notebook_with_pencil-41-512.png" alt="image"/>
-          </div>
+        <div className = "signup-image">
+          <img src="http://pngimg.com/uploads/chef/chef_PNG184.png" alt="image"/>
         </div>
         <div className = "signup-form">
         <h1>Sign Up </h1>
@@ -55,9 +54,9 @@ export function SignUp(props) {
           <input name="password" type="Password" ref={passwordRef} />
         </label>
         
-        <button onClick={submit}>Submit</button>
+        <button className= "login-button" onClick={submit}>Submit</button>
       </form>
-      <p>Have an account?</p>
+      <p>Have an account?<Link to = "/login">Log In</Link></p>
       </div>
       </div>
     </div>
