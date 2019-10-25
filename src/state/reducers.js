@@ -4,7 +4,8 @@ const initialState = {
     posts: [],
     chefs: [],
     isFetching: false,
-    error: ""
+    error: "",
+    post: {}
 };
 
 export function chefReducer(state = initialState, action){
@@ -25,6 +26,15 @@ export function chefReducer(state = initialState, action){
                 ...state,
                 error: action.payload,
             } 
+        default:
+            return state;
+    }
+}
+
+export function singlePostReducer(state = initialState.post, action){
+    switch(action.type){
+        case types.SET_POST:
+            return {post: action.payload}
         default:
             return state;
     }
@@ -68,6 +78,8 @@ export function postReducer(state = initialState, action){
                     ...state,
                     error: action.payload,
                 } 
+                case types.DELETE_POST: 
+                return 
         default:
             return state;
     }

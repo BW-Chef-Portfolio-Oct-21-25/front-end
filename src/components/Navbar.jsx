@@ -11,7 +11,7 @@ import ChefPortfolio from "./ChefPortfolio";
 import * as actionCreators from '../state/actionCreators';
 import UpdateItem from './updatePortfolio';
 import ChefList from './chefs/ChefList';
-import Chef from './chefs/Chef';
+import SinglePost from './SinglePost';
 import SingleChef from "./chefs/SingleChef";
 
 const PrivateRoute = (Component, props) => {
@@ -93,6 +93,17 @@ export function Navbar(props) {
           return <UpdateItem {...props} />}}/>
          <Route exact path="/chefs" component={ChefList}/> 
          <Route exact path="/chef/:id" component={SingleChef}/> 
+         <Route
+          exact
+          path="/post/:postId"
+          // render={props => {
+          //   const { id } = props.match.params;
+          //   console.log(id);
+          //   const user = posts.find(usr => usr.id == id);
+          //   console.log(user);
+          // }}
+          render={props => {return <SinglePost {...props}/>}}
+        />
       </main>
     </div>
   );

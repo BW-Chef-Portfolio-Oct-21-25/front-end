@@ -7,6 +7,7 @@ import SinglePost from "./Post";
 import axiosWithAuth from "../axiosWithAuth/index";
 import './scss/portfolio.scss'
 
+
 class ChefPortfolio extends React.Component {
   componentDidMount() {
     this.props.getPosts();
@@ -17,6 +18,7 @@ class ChefPortfolio extends React.Component {
     const chefRecipes = this.props.posts.filter(recipe => {
       return recipe.chef_id == chef_id;
     });
+
 
     if (this.props.posts.length) {
       return (
@@ -29,6 +31,7 @@ class ChefPortfolio extends React.Component {
                 <Link to={`post/${post.id}`} key={post.id}>
                   <SinglePost key={post.id} post={post} />
                 </Link>
+                <button onClick={() => this.props.deleteRecipe(post.id)}>Delete Post</button>
                 <Link  className = "login-button" to={`/updateitem/${post.id}`}>Edit Post</Link>
               </div>
             ))}

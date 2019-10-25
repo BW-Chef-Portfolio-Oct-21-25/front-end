@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { getSinglePost } from '../state/actionCreators';
 
-export default function SinglePost({ post }) {
+export default function Post({ post }) {
 
     return (
         <div className="list-card">

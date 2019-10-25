@@ -24,3 +24,7 @@ export const GET_CHEFS = 'GET_CHEFS';
 export const GET_CHEFS_SUCCESS = 'GET_CHEFS_SUCCESS';
 
 export const GET_CHEFS_FAILURE = 'GET_CHEFS_FAILURE';
+
+
+export const SET_POST = 'SET_POST';
+export const DELETE_POST = 'DELETE_POST';
