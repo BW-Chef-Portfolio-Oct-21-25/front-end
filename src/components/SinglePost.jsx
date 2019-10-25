@@ -22,6 +22,7 @@ export function SinglePost(props) {
     return <p>Loading</p>;
   }
   return (
+      <>
     <div className="single-post">
       <div className="recipe-img">
         <img src={props.post.post.imgURL} />
@@ -34,6 +35,8 @@ export function SinglePost(props) {
         <p> <span>Instructions:</span> {props.post.post.directions}</p>
       </div>
     </div>
+    <button className='home-redirect'onClick={() => props.history.push('/')}>Back to homepage</button>
+    </>
   );
 }
 
