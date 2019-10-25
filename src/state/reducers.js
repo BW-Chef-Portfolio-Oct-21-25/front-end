@@ -78,6 +78,8 @@ export function postReducer(state = initialState, action){
                     ...state,
                     error: action.payload,
                 } 
+                case types.DELETE_POST: 
+                return 
         default:
             return state;
     }

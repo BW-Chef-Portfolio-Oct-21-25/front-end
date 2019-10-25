@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import SinglePost from "./Post";
 import axiosWithAuth from "../axiosWithAuth/index";
 
+
 class ChefPortfolio extends React.Component {
   componentDidMount() {
     this.props.getPosts();
@@ -16,6 +17,7 @@ class ChefPortfolio extends React.Component {
     const chefRecipes = this.props.posts.filter(recipe => {
       return recipe.chef_id == chef_id;
     });
+
 
     if (this.props.posts.length) {
       return (
@@ -28,7 +30,8 @@ class ChefPortfolio extends React.Component {
                 <Link to={`post/${post.id}`} key={post.id}>
                   <SinglePost key={post.id} post={post} />
                 </Link>
-                <Link to={`/updateitem/${post.id}`}>Button</Link>
+                <Link to={`/updateitem/${post.id}`}>Update</Link>
+                <button onClick={() => this.props.deleteRecipe(post.id)}>Delete Post</button>
               </div>
             ))}
           </div>

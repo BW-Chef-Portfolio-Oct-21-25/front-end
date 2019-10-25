@@ -1,5 +1,6 @@
 import Axios from "axios";
 import * as types from "./actionTypes";
+import axiosWithAuth from '../axiosWithAuth/';
 
 Axios.defaults.baseURL = "https://bwchefportfolio.herokuapp.com/api/users";
 
@@ -56,4 +57,18 @@ export const newPost = (post) => {
 
 export const setSinglePost = (post) => {
   return { type: types.SET_POST, payload: post}
+}
+
+
+
+export const deleteRecipe = (id) => dispatch => {
+  axiosWithAuth().delete(`https://bwchefportfolio.herokuapp.com/api/users/post/${id}`)
+  .then(res => {
+    console.log(res)
+    dispatch({
+      type: types.DELETE_POST,
+      payload: id
+    })
+  })
+  .catch(err => console.log(err))
 }
